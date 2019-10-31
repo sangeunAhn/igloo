@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert} from 'react-native';
+import {Alert, Animated} from 'react-native';
 import * as axios from 'axios';
 import Login from './presenter';
 
@@ -13,8 +13,14 @@ class Container extends React.Component {
     this.state = {
       id: '',
       password: '',
+      value: new Animated.Value(0),
+      position: new Animated.ValueXY({x: 0, y: 400}),
     };
   }
+  componentDidMount() {
+    this._moveX();
+  }
+
   render() {
     return (
       <Login
@@ -24,9 +30,26 @@ class Container extends React.Component {
         signUp={this._signUp}
         idChange={this._idChange}
         pwChange={this._pwChange}
+        fadeIn={this._fadeIn}
+        getStyle={this._getStyle}
+        moveX={this._moveX}
       />
     );
   }
+
+  _moveX = () => {
+    Animated.decay(this.state.position, {
+      toValue: {x: 0, y: 1},
+      velocity: 0.1,
+      // deceleration : 0.1
+    }).start();
+  };
+
+  _getStyle = () => {
+    return {
+      transform: [{translateY: this.state.position.y}],
+    };
+  };
 
   _goToUpdateClub = () => {
     const t = this;
@@ -37,7 +60,7 @@ class Container extends React.Component {
         id,
       })
       .then(function(response) {
-        userNo = JSON.stringify(response.data.message.userNo);
+        var userNo = JSON.stringify(response.data.message.userNo);
         t.props.navigation.navigate('UpdateClub', {
           userNo: userNo,
         });
@@ -53,8 +76,8 @@ class Container extends React.Component {
         id,
       })
       .then(function(response) {
-        userNo = JSON.stringify(response.data.message.userNo);
-        school = JSON.stringify(response.data.message.school);
+        var userNo = JSON.stringify(response.data.message.userNo);
+        var school = JSON.stringify(response.data.message.school);
         setTimeout(() => {
           t.props.navigation.navigate(
             'MakeClub',
@@ -76,7 +99,7 @@ class Container extends React.Component {
         id,
       })
       .then(function(response) {
-        ms = response.data.message;
+        var ms = response.data.message;
         {
           ms === 'true' ? t._goToUpdateClub() : t._goToCreateClub();
         }
@@ -92,7 +115,7 @@ class Container extends React.Component {
         password,
       })
       .then(function(response) {
-        login = response.data.message;
+        var login = response.data.message;
 
         if (login === 'true') {
           t._getClub();
@@ -104,7 +127,7 @@ class Container extends React.Component {
 
   _login = () => {
     const {id, password} = this.state;
-    if (id == '' || password == '') {
+    if (id === '' || password === '') {
       Alert.alert('아이디와 비밀번호를 입력해주세요.');
     } else {
       this._getIdPw();
@@ -125,6 +148,14 @@ class Container extends React.Component {
 
   _pwChange = password => {
     this.setState({password});
+  };
+
+  _responseInfoCallback = (error, result) => {
+    if (error) {
+      console.log('Error fetching data: ' + error.toString());
+    } else {
+      console.log(result);
+    }
   };
 }
 
