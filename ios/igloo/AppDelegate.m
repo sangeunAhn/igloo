@@ -11,6 +11,7 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <KakaoOpenSDK/KakaoOpenSDK.h>
 
 @implementation AppDelegate
 
@@ -36,7 +37,11 @@
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
             options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
-
+  
+  if ([KOSession isKakaoAccountLoginCallback:url]) {
+      return [KOSession handleOpenURL:url];
+  }
+  
   BOOL handled =  [[FBSDKApplicationDelegate sharedInstance]
                    application:application
                    openURL:url
@@ -46,6 +51,16 @@
   return handled;
 }
 
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+                                      sourceApplication:(NSString *)sourceApplication
+                                              annotation:(id)annotation {
+    if ([KOSession isKakaoAccountLoginCallback:url]) {
+        return [KOSession handleOpenURL:url];
+    }
+
+    return false;
+}
+
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
 {
 #if DEBUG
@@ -53,6 +68,11 @@
 #else
   return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 #endif
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    [KOSession handleDidBecomeActive];
 }
 
 @end

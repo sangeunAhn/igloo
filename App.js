@@ -15,6 +15,7 @@ import Record from './screen/Main/ClubRecord';
 import Login from './screen/Login/Login';
 import SignUp from './screen/Login/SignUp';
 import SignUpPermission from './screen/Login/SignUpPermission';
+import * as MagicMove from 'react-native-magic-move';
 
 const RootStack = createStackNavigator(
   {
@@ -72,18 +73,20 @@ export default class App extends React.Component {
   render() {
     return (
       <>
-        <AppContainer />
-        <StatusBar
-          barStyle="dark-content"
-          // dark-content, light-content and default
-          hidden={false}
-          //To hide statusBar
-          backgroundColor="#FAFAFA"
-          //Background color of statusBar only works for Android
-          translucent={false}
-          //allowing light, but not detailed shapes
-          networkActivityIndicatorVisible={true}
-        />
+        <MagicMove.Provider>
+          <AppContainer />
+          <StatusBar
+            barStyle="dark-content"
+            // dark-content, light-content and default
+            hidden={false}
+            //To hide statusBar
+            backgroundColor="#FAFAFA"
+            //Background color of statusBar only works for Android
+            translucent={false}
+            //allowing light, but not detailed shapes
+            networkActivityIndicatorVisible={true}
+          />
+        </MagicMove.Provider>
       </>
     );
   }

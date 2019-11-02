@@ -18,6 +18,7 @@
 		2DCD954D1E0B4F2C00145EB5 /* iglooTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* iglooTests.m */; };
 		790F01AE4A8DCD5E0F676422 /* libPods-igloo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A73A7AC7830DE1033C0301AC /* libPods-igloo.a */; };
 		9950A104A75DB9CC868D6449 /* libPods-iglooTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B510F195D1E5DD5BF809C0B6 /* libPods-iglooTests.a */; };
+		A65CA601236A8C8C005975FE /* KakaoOpenSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A65CA600236A8C8C005975FE /* KakaoOpenSDK.framework */; };
 		BFAF00ED5EC30A254A7F39EC /* libPods-igloo-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 001FF51FCDD54DE54D6A80C8 /* libPods-igloo-tvOSTests.a */; };
 		F13061A7DA8064B5E26E6640 /* libPods-igloo-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 79723852ECF22CF89448DC1A /* libPods-igloo-tvOS.a */; };
 /* End PBXBuildFile section */
@@ -60,6 +61,7 @@
 		74FE9A5B5C4637063D160681 /* Pods-igloo-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-igloo-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-igloo-tvOS/Pods-igloo-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		79723852ECF22CF89448DC1A /* libPods-igloo-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-igloo-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F4DAA43B3938FD6755C8160 /* Pods-iglooTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iglooTests.debug.xcconfig"; path = "Target Support Files/Pods-iglooTests/Pods-iglooTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A65CA600236A8C8C005975FE /* KakaoOpenSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaoOpenSDK.framework; sourceTree = "<group>"; };
 		A73A7AC7830DE1033C0301AC /* libPods-igloo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-igloo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B510F195D1E5DD5BF809C0B6 /* libPods-iglooTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iglooTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D739182A1AA67537B449135F /* Pods-igloo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-igloo.release.xcconfig"; path = "Target Support Files/Pods-igloo/Pods-igloo.release.xcconfig"; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				790F01AE4A8DCD5E0F676422 /* libPods-igloo.a in Frameworks */,
+				A65CA601236A8C8C005975FE /* KakaoOpenSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +142,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A65CA600236A8C8C005975FE /* KakaoOpenSDK.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				A73A7AC7830DE1033C0301AC /* libPods-igloo.a */,
@@ -679,14 +683,20 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = igloo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
+					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.igloo.igloo;
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.igloo;
 				PRODUCT_NAME = igloo;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -698,14 +708,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = igloo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
+					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.igloo.igloo;
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.igloo;
 				PRODUCT_NAME = igloo;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

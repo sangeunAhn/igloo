@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import {Alert, Animated} from 'react-native';
 import * as axios from 'axios';
 import Login from './presenter';
@@ -148,14 +148,6 @@ class Container extends React.Component {
 
   _pwChange = password => {
     this.setState({password});
-  };
-
-  _responseInfoCallback = (error, result) => {
-    if (error) {
-      console.log('Error fetching data: ' + error.toString());
-    } else {
-      console.log(result);
-    }
   };
 }
 

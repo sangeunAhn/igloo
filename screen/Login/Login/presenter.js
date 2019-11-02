@@ -1,31 +1,14 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {
   StyleSheet,
   View,
-  TouchableOpacity,
   Dimensions,
-  Text,
   Platform,
-  SafeAreaView,
-  Animated,
-  Image,
   ImageBackground,
 } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import {TextField} from 'react-native-material-textfield';
-
-import HeaderScrollView from 'react-native-header-scroll-view';
-import {ifIphoneX} from 'react-native-iphone-x-helper';
-import LinearGradient from 'react-native-linear-gradient';
 import * as Animatable from 'react-native-animatable';
-import {
-  LoginButton,
-  LoginManager,
-  AccessToken,
-  GraphRequest,
-  GraphRequestManager,
-} from 'react-native-fbsdk';
-// import RNKakaoLogins from 'react-native-kakao-logins';
+import KakaoLogin from '../../../components/SocialLogin/kakaoLogin';
+import FacebookLogin from '../../../components/SocialLogin/FacebookLogin';
 
 const {width, height} = Dimensions.get('window');
 
@@ -50,55 +33,8 @@ const Login = props => (
           delay={3000}
           duration={3000}
           useNativeDriver={true}>
-          <LoginButton
-            onLoginFinished={(error, result) => {
-              if (error) {
-                console.log('login has error: ' + result.error);
-              } else if (result.isCancelled) {
-                console.log('login is cancelled.');
-              } else {
-                console.log(result);
-                AccessToken.getCurrentAccessToken().then(data => {
-                  console.log(data.accessToken.toString());
-                  const infoRequest = new GraphRequest(
-                    '/me',
-                    {
-                      parameters: {
-                        fields: {
-                          string:
-                            'email,name,first_name,last_name,birthday,gender',
-                        },
-                        access_token: {
-                          string: data.accessToken.toString(),
-                        },
-                      },
-                    },
-                    props._responseInfoCallback(),
-                  );
-                  new GraphRequestManager().addRequest(infoRequest).start();
-                });
-              }
-            }}
-            onLogoutFinished={() => console.log('logout.')}
-          />
-          <TouchableOpacity
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              marginTop: 30,
-              backgroundColor: '#F7E314',
-              width: width * 0.55,
-              height: height * 0.06,
-            }}
-            onPress={() => this.kakaoLogin()}>
-            <Image
-              style={{width: width * 0.1, height: height * 0.04}}
-              source={require('../../../images/kakao.png')}
-            />
-            <Text style={{color: '#3C1E1E', fontWeight: 'bold'}}>
-              카카오톡으로 로그인
-            </Text>
-          </TouchableOpacity>
+          <FacebookLogin {...props} />
+          <KakaoLogin {...props} />
         </Animatable.View>
       </View>
     </ImageBackground>
