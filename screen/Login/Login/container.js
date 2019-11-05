@@ -60,7 +60,7 @@ class Container extends React.Component {
         id,
       })
       .then(function(response) {
-        var userNo = JSON.stringify(response.data.message.userNo);
+        var userNo = response.data.message.userNo;
         t.props.navigation.navigate('UpdateClub', {
           userNo: userNo,
         });
@@ -76,8 +76,8 @@ class Container extends React.Component {
         id,
       })
       .then(function(response) {
-        var userNo = JSON.stringify(response.data.message.userNo);
-        var school = JSON.stringify(response.data.message.school);
+        var userNo = response.data.message.userNo;
+        var school = response.data.message.school;
         setTimeout(() => {
           t.props.navigation.navigate(
             'MakeClub',

@@ -21,14 +21,14 @@ export default class UpdateButton extends Component {
               <View style={styles.box3}>
                 <View
                   style={
-                    this.props.title == '정보 수정' ||
-                    this.props.title == '계정 수정'
+                    this.props.title === '정보 수정' ||
+                    this.props.title === '계정 수정'
                       ? styles.logo
                       : styles.logo2
                   }>
-                  {this.props.title == '정보 수정' ? (
+                  {this.props.title === '정보 수정' ? (
                     <EvilIcons name="user" size={width * 0.1} />
-                  ) : this.props.title == '특징 수정' ? (
+                  ) : this.props.title === '특징 수정' ? (
                     <AntDesign name="idcard" size={width * 0.075} />
                   ) : (
                     <SimpleLineIcons

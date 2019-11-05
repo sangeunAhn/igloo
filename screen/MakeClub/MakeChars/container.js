@@ -41,7 +41,7 @@ class Container extends React.Component {
     );
   }
 
-  componentWillMount = () => {
+  UNSAFE_componentWillMount = () => {
     BackHandler.addEventListener(
       'hardwareBackPress',
       this._handleBackButtonClick,
@@ -55,7 +55,7 @@ class Container extends React.Component {
     });
   };
 
-  componentWillUnmount() {
+  UNSAFE_componentWillUnmount() {
     BackHandler.removeEventListener(
       'hardwareBackPress',
       this._handleBackButtonClick,
@@ -79,7 +79,7 @@ class Container extends React.Component {
 
   _setDatas = async response => {
     const t = this;
-    for (item of response.data) {
+    for (var item of response.data) {
       await t._addGetChars(item.chars, item.createdAt);
     }
   };
@@ -167,7 +167,7 @@ class Container extends React.Component {
     this.setState({isSubmitting: true});
     var userNo = navigation.getParam('userNo', 'NO-ID');
     this._updateClubChars();
-    if (this.props.navigation.getParam('from', 'NO-ID') == 'm') {
+    if (this.props.navigation.getParam('from', 'NO-ID') === 'm') {
       navigation.goBack();
     } else {
       navigation.navigate('MakeRecord', {

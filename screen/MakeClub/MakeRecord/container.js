@@ -187,6 +187,8 @@ class Container extends React.Component {
         var school = response.data.message.school;
         t.props.navigation.navigate('Main', {
           schoolName: school,
+          userSchool: school,
+          userNo,
         });
       });
   };
@@ -200,8 +202,9 @@ class Container extends React.Component {
   };
 
   _iconPress = () => {
+    var userNo = this.props.navigation.getParam('userNo', 'NO-ID');
     this.props.navigation.navigate('MakeRecordPictures', {
-      userNo: this.props.navigation.getParam('userNo', 'NO-ID'),
+      userNo,
     });
   };
 

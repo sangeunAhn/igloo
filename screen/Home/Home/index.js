@@ -5,57 +5,31 @@ import {
   View,
   ScrollView,
   Text,
-  StatusBar,
-  SafeAreaView,
   TouchableOpacity,
   Dimensions,
-  Alert,
 } from 'react-native';
-import Carousel, {Pagination} from 'react-native-snap-carousel';
+import Carousel from 'react-native-snap-carousel';
 import {
   sliderWidth,
   itemWidth,
 } from '../../../components/Snap/SliderEntry.style';
 import SliderEntry from '../../../components/Snap/SliderEntry';
-import styles, {colors} from '../../../components/Snap/index.style';
-import {ENTRIES1, ENTRIES2} from '../../../components/Snap/entries';
-import MainButton from '../../../components/Button/MainButton';
+import styles from '../../../components/Snap/index.style';
+import {ENTRIES1} from '../../../components/Snap/entries';
 import Modal from 'react-native-simple-modal';
 // import RNKakao from 'rn-kakao-login';
 
 import {
   LoginButton,
-  LoginManager,
   AccessToken,
   GraphRequest,
   GraphRequestManager,
 } from 'react-native-fbsdk';
 
 const {width, height} = Dimensions.get('window');
-
-const IS_ANDROID = Platform.OS === 'android';
 const SLIDER_1_FIRST_ITEM = 1;
-const {width: viewportWidth, height: viewportHeight} = Dimensions.get('window');
-
-function wp(percentage) {
-  const value = (percentage * viewportWidth) / 100;
-  return Math.round(value);
-}
 
 export default class example extends Component {
-  kakaoLogin = async () => {
-    // try {
-    //   const result = await RNKakao.login();
-    //   this.setState({
-    //     userInfo: JSON.stringify(result),
-    //   });
-    // } catch (e) {
-    //   this.setState({
-    //     userInfo: `Error: ${e}`,
-    //   });
-    // }
-  };
-
   state = {open: false};
   openModal = () => this.setState({open: true});
 
@@ -97,8 +71,6 @@ export default class example extends Component {
     }
   }
   mainExample(number, title) {
-    const {slider1ActiveSlide} = this.state;
-
     return (
       <View style={styles.exampleContainer}>
         <Carousel
@@ -133,23 +105,8 @@ export default class example extends Component {
     return (
       <>
         <View style={styles.container}>
-          <View
-            style={{
-              marginTop: Platform.OS === 'ios' ? 30 : 15,
-              width: width,
-              height: height * 0.1,
-              justifyContent: 'flex-end',
-              alignItems: 'center',
-            }}>
-            <Text
-              style={{
-                color: '#3B3B3B',
-                fontSize: width * 0.08,
-                letterSpacing: 0.05,
-                fontWeight: '900',
-              }}>
-              내 손 안의 동아리 '동방'
-            </Text>
+          <View style={styles.title}>
+            <Text style={styles.titleText}>내 손 안의 동아리 '동방'</Text>
           </View>
           {this.gradient}
           <ScrollView

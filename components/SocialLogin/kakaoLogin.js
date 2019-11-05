@@ -6,7 +6,7 @@ import {
   YellowBox,
   TouchableOpacity,
 } from 'react-native';
-
+import * as axios from 'axios';
 import KakaoLogins from '@react-native-seoul/kakao-login';
 
 const {width, height} = Dimensions.get('window');
@@ -44,26 +44,7 @@ export default function App(props) {
           `Login Finished:${JSON.stringify(result)}`,
           setLoginLoading(false),
         );
-
-        logCallback('Get Profile Start', setProfileLoading(true));
-
-        KakaoLogins.getProfile()
-          .then(async result => {
-            await setProfile(result);
-            await logCallback(
-              `Get Profile Finished:${JSON.stringify(result)}`,
-              setProfileLoading(false),
-            );
-            props.navigation.navigate('Schools', {
-              userId: result.id,
-            });
-          })
-          .catch(err => {
-            logCallback(
-              `Get Profile Failed:${err.code} ${err.message}`,
-              setProfileLoading(false),
-            );
-          });
+        getProfile();
       })
       .catch(err => {
         if (err.code === 'E_CANCELLED_OPERATION') {
@@ -81,18 +62,56 @@ export default function App(props) {
     logCallback('Get Profile Start', setProfileLoading(true));
 
     KakaoLogins.getProfile()
-      .then(result => {
-        setProfile(result);
-        logCallback(
+      .then(async result => {
+        await setProfile(result);
+        await logCallback(
           `Get Profile Finished:${JSON.stringify(result)}`,
           setProfileLoading(false),
         );
+        _existId(result.id);
       })
       .catch(err => {
         logCallback(
           `Get Profile Failed:${err.code} ${err.message}`,
           setProfileLoading(false),
         );
+      });
+  };
+
+  const _makeUser = async id => {
+    let formData = new FormData();
+    formData.append('id', 'kakao' + id);
+
+    // 데이터베이스에 넣기
+    await fetch('http://13.209.221.206/php/Login/makeUser.php', {
+      method: 'POST',
+      body: formData,
+      header: {
+        'content-type': 'multipart/form-data',
+      },
+    });
+
+    props.navigation.navigate('Schools', {
+      userId: id,
+    });
+  };
+
+  const _gotoSchool = id => {
+    props.navigation.navigate('Schools', {
+      userId: id,
+    });
+  };
+
+  const _existId = id => {
+    axios
+      .post('http://13.209.221.206/php/Login/ExistId.php', {
+        id: 'kakao' + id,
+      })
+      .then(function(response) {
+        var ms = response.data.message;
+        {
+          ms === 'true' ? _gotoSchool('kakao' + id) : _makeUser('kakao' + id);
+        }
       });
   };
 

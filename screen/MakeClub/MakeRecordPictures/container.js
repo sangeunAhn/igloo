@@ -255,8 +255,7 @@ export default class RecordRegister extends React.Component {
       header: {
         'content-type': 'multipart/form-data',
       },
-    }).then(response => response.json());
-    // .then(result => console.log(result));
+    }).then(result => console.log(result));
   };
 
   _handleBackButtonClick = () => {

@@ -1,30 +1,12 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  Dimensions,
-  Text,
-  Platform,
-  SafeAreaView,
-} from 'react-native';
+import {StyleSheet, View, Dimensions, Text, Platform} from 'react-native';
 import SchoolBtn from '../../../components/Button/SchoolBtn';
-import Ionicons from 'react-native-vector-icons/Ionicons'
 
 const {width, height} = Dimensions.get('window');
 
 const Schools = props => (
   <>
     <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.backButton}
-        onPress={() => {
-          props.navigation.goBack();
-        }}>
-        <SafeAreaView>
-          <Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
-        </SafeAreaView>
-      </TouchableOpacity>
       <Text style={styles.title}>학교 선택</Text>
       <View style={{flexDirection: 'column', height: height * 0.83}}>
         <View style={styles.schools}>
@@ -48,14 +30,6 @@ const Schools = props => (
 );
 
 const styles = StyleSheet.create({
-  backButton: {
-    position: 'absolute',
-    width: width * 0.2,
-    height: height * 0.1,
-    top: Platform.OS === 'ios' ? 30 : 15,
-    left: 10,
-    zIndex: 1,
-  },
   container: {
     flex: 1,
     flexDirection: 'column',

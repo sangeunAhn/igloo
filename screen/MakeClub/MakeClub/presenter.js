@@ -21,64 +21,27 @@ const MakeClub = props => (
       <ActivityIndicator size="large" style={styles.activityIndicator} />
     ) : (
       <View style={styles.container}>
-        <TouchableOpacity
-          style={styles.backBtn}
-          onPress={() => {
-            props.navigation.goBack();
-          }}>
-          <SafeAreaView>
-            <Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
-          </SafeAreaView>
-        </TouchableOpacity>
-
         {Platform.OS === 'android' ? (
-          <KeyboardAvoidingView style={{flex: 1}} behavior="padding" enabled>
-            <MakeClub2
-              {...props}
-              pickLogo={props.pickLogo}
-              pickMainPicture={props.pickMainPicture}
-              btnPress={props.btnPress}
-              setPrevClubKind={props.setPrevClubKind}
-              clubNameChange={props.clubNameChange}
-              clubIntroduceChange={props.clubIntroduceChange}
-              clubPhoneNumberChange={props.clubPhoneNumberChange}
-              clubSizeChange={props.clubSizeChange}
-              clubAutonomousChange={props.clubAutonomousChange}
-              clubFunnyChange={props.clubFunnyChange}
-              clubFriendshipChange={props.clubFriendshipChange}
-              handleFocus={props.handleFocus}
-              handleBlur={props.handleBlur}
-              handleFocus1={props.handleFocus1}
-              handleBlur1={props.handleBlur1}
-              handleFocus2={props.handleFocus2}
-              handleBlur2={props.handleBlur2}
-              handleFocus3={props.handleFocus3}
-              handleBlur3={props.handleBlur3}
-            />
-          </KeyboardAvoidingView>
+          <MakeClub2 {...props} />
         ) : (
-          <MakeClub2
-            {...props}
-            pickLogo={props.pickLogo}
-            pickMainPicture={props.pickMainPicture}
-            btnPress={props.btnPress}
-            setPrevClubKind={props.setPrevClubKind}
-            clubNameChange={props.clubNameChange}
-            clubIntroduceChange={props.clubIntroduceChange}
-            clubPhoneNumberChange={props.clubPhoneNumberChange}
-            clubSizeChange={props.clubSizeChange}
-            clubAutonomousChange={props.clubAutonomousChange}
-            clubFunnyChange={props.clubFunnyChange}
-            clubFriendshipChange={props.clubFriendshipChange}
-            handleFocus={props.handleFocus}
-            handleBlur={props.handleBlur}
-            handleFocus1={props.handleFocus1}
-            handleBlur1={props.handleBlur1}
-            handleFocus2={props.handleFocus2}
-            handleBlur2={props.handleBlur2}
-            handleFocus3={props.handleFocus3}
-            handleBlur3={props.handleBlur3}
-          />
+          <>
+            <TouchableOpacity
+              style={styles.backBtn}
+              onPress={() => {
+                props.navigation.goBack();
+              }}>
+              <SafeAreaView>
+                <Ionicons
+                  name="ios-arrow-back"
+                  size={width * 0.08}
+                  color="black"
+                />
+              </SafeAreaView>
+            </TouchableOpacity>
+            <KeyboardAvoidingView style={{flex: 1}} behavior="padding" enabled>
+              <MakeClub2 {...props} />
+            </KeyboardAvoidingView>
+          </>
         )}
       </View>
     )}

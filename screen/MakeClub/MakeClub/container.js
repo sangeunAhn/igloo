@@ -78,8 +78,8 @@ class Container extends Component {
     );
   }
 
-  componentWillMount = async () => {
-    if (this.props.navigation.getParam('from', 'NO-ID') == 'm') {
+  UNSAFE_componentWillMount = async () => {
+    if (this.props.navigation.getParam('from', 'NO-ID') === 'm') {
       await this._getDatas();
     }
   };
@@ -195,6 +195,7 @@ class Container extends Component {
       Image.getSize(response.uri, (width, height) => {
         console.log(width, height);
       });
+      console.log(response.uri);
       this.setState({clubLogo_high: response.uri, clubLogo_low: response.uri});
     });
   };
@@ -225,12 +226,11 @@ class Container extends Component {
 
   _notUpdate = () => {
     const {navigation} = this.props;
-    var getUserNo = navigation.getParam('userNo', 'NO-ID');
-    getUserNo = getUserNo.replace(/[^0-9]/g, '');
+    var userNo = navigation.getParam('userNo', 'NO-ID');
     const t = this;
     axios
       .post('http://13.209.221.206/php/MakeClub/GetClubExist.php', {
-        userNo: getUserNo,
+        userNo,
       })
       .then(async function(response) {
         var result = response.data.message;
@@ -248,10 +248,8 @@ class Container extends Component {
   _makeClub = async () => {
     //userNo 가지고 오기
     const {navigation} = this.props;
-    var getUserNo = navigation.getParam('userNo', 'NO-ID');
-    var getSchool = navigation.getParam('school', 'NO-ID');
-    getUserNo = getUserNo.replace(/[^0-9]/g, '');
-    getSchool = getSchool.substring(1, getSchool.length - 1);
+    var userNo = navigation.getParam('userNo', 'NO-ID');
+    var school = navigation.getParam('school', 'NO-ID');
 
     const {
       clubName,
@@ -275,8 +273,8 @@ class Container extends Component {
       formData.append('clubKind', clubKind);
       formData.append('clubPhoneNumber', clubPhoneNumber);
       formData.append('clubIntroduce', clubIntroduce);
-      formData.append('userNo', getUserNo);
-      formData.append('school', getSchool);
+      formData.append('userNo', userNo);
+      formData.append('school', school);
       formData.append('clubSize', clubSize);
       formData.append('clubAutonomous', clubAutonomous);
       formData.append('clubFunny', clubFunny);
@@ -324,7 +322,7 @@ class Container extends Component {
       });
     }
     this.props.navigation.navigate('MakeChars', {
-      userNo: getUserNo,
+      userNo,
     });
   };
 
@@ -348,7 +346,7 @@ class Container extends Component {
       clubFriendship,
     } = this.state;
 
-    if (clubName == '' || clubPhoneNumber == '' || clubIntroduce == '') {
+    if (clubName === '' || clubPhoneNumber === '' || clubIntroduce === '') {
       Alert.alert('내용을 채워주세요');
       this.setState({isSubmitting: false});
     } else {
@@ -363,7 +361,7 @@ class Container extends Component {
       formData.append('clubFunny', clubFunny);
       formData.append('clubFriendship', clubFriendship);
 
-      if (clubLogo_high == null || clubLogo_high == 'ul') {
+      if (clubLogo_high == null || clubLogo_high === 'ul') {
         formData.append('clubLogo_high', null);
         formData.append('clubLogo_low', null);
       } else {
@@ -379,7 +377,7 @@ class Container extends Component {
         });
       }
 
-      if (clubMainPicture_high == null || clubMainPicture_high == 'ul') {
+      if (clubMainPicture_high == null || clubMainPicture_high === 'ul') {
         formData.append('clubMainPicture_high', null);
         formData.append('clubMainPicture_low', null);
       } else {
@@ -429,7 +427,7 @@ class Container extends Component {
         'content-type': 'multipart/form-data',
       },
     });
-    if (this.props.navigation.getParam('from', 'NO-ID') == 'm') {
+    if (this.props.navigation.getParam('from', 'NO-ID') === 'm') {
       this.props.navigation.goBack();
     } else {
       this.props.navigation.navigate('MakeChars', {
@@ -440,7 +438,7 @@ class Container extends Component {
 
   _btnPress = async () => {
     this.setState({isSubmitting: true});
-    if (this.props.navigation.getParam('from', 'NO-ID') == 'm') {
+    if (this.props.navigation.getParam('from', 'NO-ID') === 'm') {
       await this._updateClub();
       this._deleteImages();
     } else {

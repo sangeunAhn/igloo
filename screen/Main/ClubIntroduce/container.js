@@ -47,7 +47,7 @@ class Container extends Component {
     );
   }
 
-  componentWillMount = () => {
+  UNSAFE_componentWillMount = () => {
     this._getDatas();
     this._getChars();
 
@@ -70,20 +70,23 @@ class Container extends Component {
     });
   };
 
-  componentWillUnmount() {
+  UNSAFE_componentWillUnmount() {
     BackHandler.removeEventListener(
       'hardwareBackPress',
       this._handleBackButtonClick,
     );
   }
   _gotoRecord = () => {
-    this._onClose();
+    const {navigation} = this.props;
+    var clubName = navigation.getParam('clubName', 'NO-ID');
+    var school = navigation.getParam('school', 'NO-ID');
+
     this.props.navigation.navigate('Record', {
-      clubName: this.props.clubName,
-      school: this.props.school,
+      clubName,
+      school,
     });
   };
-  
+
   _getDatas = async () => {
     const t = this;
     const {navigation} = this.props;

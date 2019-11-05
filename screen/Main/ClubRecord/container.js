@@ -44,7 +44,7 @@ class Container extends React.Component {
       this._handleBackButtonClick,
     );
     if (imageRoom.length !== 0) {
-      for (const item of imageRoom) {
+      for (var item of imageRoom) {
         await t._getDatas(item);
       }
     } else {
@@ -66,7 +66,7 @@ class Container extends React.Component {
 
   _getRecordHeight = async () => {
     const items = [];
-    for (const item of this.state.listRecords) {
+    for (var item of this.state.listRecords) {
       const {uri} = item;
       const [height] = await this._getImageSize(uri);
       items.push({uri, height});
@@ -108,7 +108,7 @@ class Container extends React.Component {
 
   _getRecordHeight = async () => {
     const items = [];
-    for (const item of this.state.listRecords) {
+    for (var item of this.state.listRecords) {
       const {uri} = item;
       const [height] = await this._getImageSize(uri);
       items.push({uri, height});

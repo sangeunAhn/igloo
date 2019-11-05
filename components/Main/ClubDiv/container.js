@@ -11,18 +11,28 @@ class Container extends Component {
       clubLogo: [],
       clubMainPicture: [],
     };
+    if (this.props.navigation.getParam('from', 'NO-ID') === 'makeRecord') {
+      this.props.navigation.addListener('didFocus', async () => {
+        await this.setState({
+          clubName: [],
+          clubLogo: [],
+          clubMainPicture: [],
+        });
+        this._getDatas();
+      });
+    }
   }
   static propTypes = {
     school: PropTypes.string.isRequired,
   };
-
-  render() {
-    return <ClubDiv {...this.state} {...this.props} />;
+  componentWillMount() {
+    this._getDatas();
   }
 
-  componentWillMount = async () => {
-    await this._getDatas();
-  };
+  render() {
+    console.log(this.state.clubName);
+    return <ClubDiv {...this.state} {...this.props} />;
+  }
 
   _getDatas = async () => {
     const {clubName, clubLogo, clubMainPicture} = this.state;

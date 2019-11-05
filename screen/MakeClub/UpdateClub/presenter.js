@@ -46,7 +46,7 @@ const UpdateClub = props => (
             press={props.gotoRecord}
           />
         </View>
-        <View
+        {/* <View
           style={{
             flex: 1,
             alignItems: 'flex-start',
@@ -62,7 +62,7 @@ const UpdateClub = props => (
               탈퇴하기
             </Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
       </View>
     </View>
   </>

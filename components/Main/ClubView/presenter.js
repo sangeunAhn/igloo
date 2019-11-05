@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {
   TouchableOpacity,
-  
   StyleSheet,
   View,
   Image,
@@ -12,34 +11,73 @@ import ClubChars from '../../Char/ClubChars';
 import {moderateScale} from '../../Scaling';
 import TouchMainPicture from '../TouchMainPicture';
 import FastImage from 'react-native-fast-image';
-import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
-
+import {
+  Container,
+  Header,
+  Content,
+  Card,
+  CardItem,
+  Thumbnail,
+  Text,
+  Button,
+  Icon,
+  Left,
+  Body,
+  Right,
+} from 'native-base';
 
 const {width, height} = Dimensions.get('window');
 
 const ClubView = props => (
-<TouchableOpacity onPress={props.gotoClubIntroduce} style={{marginHorizontal:8}}>
-  
-  <Card style={{ borderRadius: 15 }}>
-  <CardItem cardBody bordered style={{ borderTopLeftRadius: 15, borderTopRightRadius: 15 }}>
-  <Image source={{uri: props.clubMainPicture}} style={{borderTopLeftRadius: 15, borderTopRightRadius: 15, height: 180, width: null, flex: 1}}/>
-  </CardItem>
-  <CardItem  cardFooter bordered style={{ borderBottomLeftRadius: 15, borderBottomRightRadius: 15 }} >
-   
- 
-  <Left>
-      <Thumbnail style={{width:40, height:40}} source={{uri: props.clubLogo}} />
-      <Body>
-        <Text  style={{fontSize:20, }}>{props.clubName}</Text>
-        <Text note> {props.clubChar.map((char, i) => {
-            return <ClubChars chars={char} key={i} />;
-         })}</Text>
-      </Body>
-    </Left>
-    </CardItem>
-</Card>
+  <TouchableOpacity
+    onPress={props.gotoClubIntroduce}
+    style={{marginHorizontal: 8}}>
+    <Card style={{borderRadius: 15}}>
+      <CardItem
+        cardBody
+        bordered
+        style={{borderTopLeftRadius: 15, borderTopRightRadius: 15}}>
+        {props.clubMainPicture === null ||
+        props.clubMainPicture === 'ul' ||
+        props.clubMainPicture == '' ? (
+          <View style={styles.mainPicture} />
+        ) : (
+          <Image
+            source={{uri: props.clubMainPicture}}
+            style={styles.mainPicture}
+          />
+        )}
+      </CardItem>
+      <CardItem
+        cardFooter
+        bordered
+        style={{borderBottomLeftRadius: 15, borderBottomRightRadius: 15}}>
+        <Left>
+          {props.clubMainPicture === null ||
+          props.clubMainPicture === 'ul' ||
+          props.clubMainPicture == '' ? (
+            <View style={{width: 40, height: 40}} />
+          ) : (
+            <Thumbnail
+              style={{width: 40, height: 40}}
+              source={{uri: props.clubLogo}}
+            />
+          )}
 
-</TouchableOpacity>
+          <Body>
+            <Text style={{fontSize: 20}}>{props.clubName}</Text>
+            <Text note>
+              {' '}
+              {props.clubChar.map((char, i) => {
+                return <ClubChars chars={char} key={i} />;
+              })}
+            </Text>
+          </Body>
+        </Left>
+      </CardItem>
+    </Card>
+  </TouchableOpacity>
+
   // <View style={styles.container}>
   //   <View style={styles.clubViewTop}>
   //     <View elevation={5} style={styles.logo}>
@@ -213,6 +251,13 @@ const styles = StyleSheet.create({
     borderRadius: height * 0.019,
     width: width * 0.95,
     height: height * 0.245,
+  },
+  mainPicture: {
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+    height: 180,
+    width: null,
+    flex: 1,
   },
 });
 

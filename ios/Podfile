@@ -50,6 +50,8 @@ target 'igloo' do
   pod 'FBSDKLoginKit'
   pod 'FBSDKShareKit'
 
+  pod 'react-native-viewpager', :path => '../node_modules/@react-native-community/viewpager'
+
   target 'iglooTests' do
     inherit! :search_paths
     # Pods for testing

@@ -37,7 +37,7 @@ export default class PhotoModify extends React.Component {
     });
   }
 
-  componentWillMount = async () => {
+  UNSAFE_componentWillMount = async () => {
     Image.getSize(this.props.image, (width, height) => {
       const screenWidth = Dimensions.get('window').width;
       const getHeight = (height * screenWidth - 20) / width;

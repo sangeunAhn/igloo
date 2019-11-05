@@ -53,7 +53,6 @@ class Container extends Component {
   _SignUp = async () => {
     //userNo 가지고 오기
     const {navigation} = this.props;
-
     const {id, password, email, school} = this.state;
 
     let formData = new FormData();
@@ -71,7 +70,7 @@ class Container extends Component {
       },
     });
 
-    this.props.navigation.navigate('Login');
+    navigation.navigate('Login');
   };
 
   _existId = () => {

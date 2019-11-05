@@ -14,7 +14,7 @@ class ClubPickerM extends Component {
     this.props.setPrevClubKind(user);
   };
 
-  componentWillMount = () => {
+  UNSAFE_componentWillMount = () => {
     this.setState({user: this.props.clubKind});
   };
 
