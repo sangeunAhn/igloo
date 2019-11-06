@@ -85,7 +85,7 @@ const ClubIntroduce = props => (
                 <Text note style={{alignSelf:'center',textAlign:'center',top: -30}}>
                   {' '}
                   {props.clubChar.map((char, i) => {
-                    return <ClubChars fontSize={14} chars={char} key={i} />;
+                    return <ClubChars fontSize={13} chars={char} key={i} />;
                   })}
                 </Text>
               </View>
@@ -414,7 +414,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   clubName: {
-    fontSize: 25,
+    fontSize: 24,
     fontWeight: 'bold',
   },
   recordBtn: {
