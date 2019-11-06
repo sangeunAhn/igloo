@@ -7,6 +7,7 @@ import {
   Platform,
   SafeAreaView,
   Text,
+  Linking,
 } from 'react-native';
 import ClubDiv from '../../../components/Main/ClubDiv';
 import HeaderScrollView from 'react-native-header-scroll-view';
@@ -25,10 +26,20 @@ import {
   CollapseHeader,
   CollapseBody,
 } from 'accordion-collapse-react-native';
+import Modal from "react-native-simple-modal";
 
 const {width, height} = Dimensions.get('window');
 
 export default class Main extends Component {
+  state = { open: false };
+	openModal = () => this.setState({ open: true });
+ 
+	closeModal = () => this.setState({ open: false });
+	modalDidClose = () => {
+		this.setState({ open: false });
+		console.log("Modal did close.");
+	  };
+  
   static navigationOptions = ({navigation, screenProps}) => ({
     header: null,
   });
@@ -126,6 +137,7 @@ export default class Main extends Component {
     const userSchool = navigation.getParam('userSchool', 'NO-ID');
     console.log(schoolName, userSchool);
     return (
+      <>
       <View style={styles.container}>
         <TouchableOpacity
           style={styles.backBtn}
@@ -137,18 +149,19 @@ export default class Main extends Component {
           </SafeAreaView>
         </TouchableOpacity>
         {schoolName === userSchool ? (
-          <Menu
-            style={{
-              position: 'absolute',
-              right: -3,
-              top: Platform.OS === 'ios' ? 35 : 15,
-              zIndex: 1,
-              // backgroundColor: 'red',
-            }}>
-            <MenuTrigger
-              style={{
-                padding: 13,
-              }}>
+         <Menu
+         style={{
+           position: 'absolute',
+           right: -3,
+           top: Platform.OS === 'ios' ? 35 : 15,
+           zIndex: 1,
+           // backgroundColor: 'red',
+         }}>
+         <MenuTrigger
+           style={{
+             paddingVertia: 5,
+             paddingHorizontal:10
+           }}>
               <SafeAreaView>
                 <Icon name="dots-three-horizontal" size={20} />
               </SafeAreaView>
@@ -158,9 +171,10 @@ export default class Main extends Component {
                 marginTop: 20,
                 borderRadius: 10,
                 width: 100,
-                height: 40,
-                justifyContent: 'center',
+                height: 80,
+                justifyContent: 'space-around',
               }}>
+               
               {this.state.existClub === '생성' ? (
                 <MenuOption
                   value={1}
@@ -174,6 +188,12 @@ export default class Main extends Component {
                   text="모임 수정"
                 />
               )}
+               <MenuOption
+                  value={2}
+                  style={{marginTop:3}}
+                  onSelect={this.openModal}
+                  text="문의하기"
+                />
             </MenuOptions>
           </Menu>
         ) : (
@@ -248,6 +268,33 @@ export default class Main extends Component {
           <></>
         )} */}
       </View>
+      <Modal
+      modalDidOpen={this.modalDidOpen}
+      modalDidClose={this.modalDidClose}
+        open={this.state.open}
+        closeOnTouchOutside={true}
+        modalStyle={{
+          borderRadius: 3,
+          margin: 20,
+          padding: 10,
+          backgroundColor: "#F5F5F5"
+          }}
+        >
+          <View style={{marginTop:10,marginBottom:15, marginLeft:10}}>
+            <Text style={{fontWeight:'bold', fontSize:20}}>문의사항</Text>
+            
+          </View>
+          <View style={{alignItems:'center', marginTop:15, marginBottom:40}}>
+          
+          <Text style={{fontSize: width*0.03, marginBottom:10}} onPress={() => Linking.openURL('http://pf.kakao.com/_BDxjiT/chat')}>1:1 문의하기</Text>
+          <Text style={{fontSize: width*0.03, marginBottom:10}} onPress={()=>{Linking.openURL('tel:01043720440');} }>010 4372 0440</Text>
+          <Text style={{fontSize: width*0.03, }}>leejjun28@gmail.com</Text>
+          </View>
+          <View style={{marginBottom:5}}>
+            <Text style={{color:'#848484',fontSize:width*0.02}}>문의 가능 시간 : 09:00 ~ 18:00</Text>
+          </View>
+        </Modal>
+        </>
     );
   }
 }
