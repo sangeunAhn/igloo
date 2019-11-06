@@ -60,13 +60,24 @@ const ClubIntroduce = props => (
               />
             </SafeAreaView>
           </TouchableOpacity>
-          <View style={styles.mainPicture} onPress={props.imageViewVisible1}>
-            <ImageBackground
-              blurRadius={2}
-              source={{uri: props.clubMainPicture}}
-              style={styles.mainPicture}
-            />
-          </View>
+          {props.clubMainPicture == null ||
+          props.clubMainPicture === 'ul' ||
+          props.clubMainPicture === '' ? (
+            <View style={[styles.mainPicture, {backgroundColor: '#a7bfe8'}]} />
+          ) : (
+            props.clubMainPicture && (
+              <View
+                style={styles.mainPicture}
+                onPress={props.imageViewVisible1}>
+                <ImageBackground
+                  blurRadius={2}
+                  source={{uri: props.clubMainPicture}}
+                  style={styles.mainPicture}
+                />
+              </View>
+            )
+          )}
+
           <View style={{top: -100}}>
             <View style={styles.box}>
               <View style={styles.inBox}>
@@ -78,12 +89,24 @@ const ClubIntroduce = props => (
                   })}
                 </Text>
               </View>
-              <View onPress={props.imageViewVisible2} style={styles.logo}>
-                <Thumbnail
-                  source={{uri: props.clubLogo}}
-                  style={styles.logoImage}
-                />
-              </View>
+              {props.clubLogo == null ||
+              props.clubLogo === 'ul' ||
+              props.clubLogo === '' ? (
+                <View style={styles.logo}>
+                  <View
+                    style={[styles.logoImage, {backgroundColor: '#6190e8'}]}
+                  />
+                </View>
+              ) : (
+                props.clubLogo && (
+                  <View onPress={props.imageViewVisible2} style={styles.logo}>
+                    <Thumbnail
+                      source={{uri: props.clubLogo}}
+                      style={styles.logoImage}
+                    />
+                  </View>
+                )
+              )}
             </View>
           </View>
           <View style={styles.slider}>
@@ -219,7 +242,7 @@ const ClubIntroduce = props => (
             <View style={styles.sliderLine} />
           </View>
         </View>
-        <View style={{flex: 1}}>
+        <View style={{flex: 1, backgroundColor: '#FAFAFA'}}>
           <TouchableOpacity
             style={styles.backBtn}
             onPress={() => {
@@ -233,7 +256,6 @@ const ClubIntroduce = props => (
               />
             </SafeAreaView>
           </TouchableOpacity>
-
           <View>
             <SafeAreaView>
               <Text
@@ -271,7 +293,6 @@ const ClubIntroduce = props => (
             </Text>
           </View>
         </View>
-
         <>
           {props.recordIsGetting ? (
             <View style={styles.container}>

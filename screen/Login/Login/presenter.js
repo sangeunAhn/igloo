@@ -16,12 +16,12 @@ const Login = props => (
   <>
     <ImageBackground
       imageStyle={{opacity: 0.9}}
-      style={{backgroundColor: 'gray', flex: 1, alignSelf: 'stretch'}}
+      style={{backgroundColor: 'gray ', flex: 1, alignSelf: 'stretch'}}
       source={require('../../../images/bg.jpg')}>
       <View style={styles.container}>
         <Animatable.Text
           animation="fadeInUp"
-          duration={3000}
+          duration={3500}
           useNativeDriver={true}
           style={{lineHeight: 55, color: 'white', fontSize: width * 0.1}}>
           대학교 모임이 {'\n'}궁금할땐?
@@ -31,7 +31,7 @@ const Login = props => (
           style={{marginTop: height * 0.2, alignItems: 'center'}}
           animation="fadeIn"
           delay={3000}
-          duration={3000}
+          duration={2000}
           useNativeDriver={true}>
           <FacebookLogin {...props} />
           <KakaoLogin {...props} />

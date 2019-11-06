@@ -13,7 +13,7 @@ class Container extends Component {
     super(props);
     this.state = {
       clubName: '',
-      clubKind: '예술 공연',
+      clubKind: '학술/교양',
       clubPhoneNumber: '',
       clubIntroduce: '',
       clubLogo_low: null,
@@ -184,7 +184,7 @@ class Container extends Component {
         skipBackup: true,
         path: 'images',
       },
-      quality: 0.4,
+      quality: 0.3,
     };
 
     const response = await Permissions.request('photo');
@@ -208,7 +208,7 @@ class Container extends Component {
         skipBackup: true,
         path: 'images',
       },
-      quality: 0.4,
+      quality: 0.3,
     };
 
     const response = await Permissions.request('photo');

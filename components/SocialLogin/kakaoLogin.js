@@ -131,7 +131,7 @@ export default function App(props) {
         borderRadius: 5,
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: 30,
+        marginTop: 15,
         backgroundColor: '#F7E314',
         width: 220,
         height: 30,
