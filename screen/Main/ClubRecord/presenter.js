@@ -56,7 +56,7 @@ const ClubRecord = props => (
             titleStyle={{
               // paddingTop: Platform.OS === 'ios' ? 15 : 0,
               color: '#3B3B3B',
-              fontSize: width * 0.09,
+              fontSize: width * 0.075,
             }}
             fadeDirection="up"
             scrollViewProps={{showsVerticalScrollIndicator: false}}

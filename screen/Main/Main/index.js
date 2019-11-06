@@ -168,9 +168,10 @@ export default class Main extends Component {
             </MenuTrigger>
             <MenuOptions
               optionsContainerStyle={{
+                paddingLeft:10,
                 marginTop: 20,
                 borderRadius: 10,
-                width: 100,
+                width: 130,
                 height: 80,
                 justifyContent: 'space-around',
               }}>
@@ -302,10 +303,10 @@ export default class Main extends Component {
 const styles = StyleSheet.create({
   backBtn: {
     position: 'absolute',
-    width: width * 0.2,
-    height: height * 0.1,
+    width: 30,
+    height: 40,
     top: Platform.OS === 'ios' ? 30 : 15,
-    left: 10,
+    left: width * 0.028,
     zIndex: 1,
   },
   container: {

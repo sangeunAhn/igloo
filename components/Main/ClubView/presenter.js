@@ -66,12 +66,14 @@ const ClubView = props => (
 
           <Body style={{flexWrap:'nowrap'}}>
             <Text style={{fontSize: 20, marginBottom:3}}>{props.clubName}</Text>
-            <Text style={{fontSize:12}}>
+           
+            <Text style={{fontSize:12, }}>
               {' '}
               {props.clubChar.map((char, i) => {
                 return <ClubChars chars={char} key={i} />;
               })}
             </Text>
+            
           </Body>
         </Left>
       </CardItem>

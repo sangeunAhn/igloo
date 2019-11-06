@@ -82,7 +82,7 @@ const ClubIntroduce = props => (
             <View style={styles.box}>
               <View style={styles.inBox}>
                 <Text style={styles.clubName}>{props.clubName}</Text>
-                <Text note style={{top: -30}}>
+                <Text note style={{alignSelf:'center',textAlign:'center',top: -30}}>
                   {' '}
                   {props.clubChar.map((char, i) => {
                     return <ClubChars fontSize={14} chars={char} key={i} />;
@@ -287,11 +287,11 @@ const ClubIntroduce = props => (
             {' '}
             연락처{' '}
           </Text>
-          <View style={styles.phone}>
-            <Text style={{paddingVertical: 15, paddingHorizontal: 10}}>
+          <ScrollView  style={styles.phone}>
+            <Text>
               {props.clubPhoneNumber}
             </Text>
-          </View>
+            </ScrollView>
         </View>
         <>
           {props.recordIsGetting ? (
@@ -373,8 +373,8 @@ const ClubIntroduce = props => (
 const styles = StyleSheet.create({
   backBtn: {
     position: 'absolute',
-    width: width * 0.2,
-    height: height * 0.1,
+    width: 30,
+    height: 40,
     top: Platform.OS === 'ios' ? 30 : 15,
     left: width * 0.028,
     zIndex: 1,
@@ -534,7 +534,8 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     elevation: 1.5,
     width: '85%',
-    height: 40,
+    
+    paddingVertical: 15, paddingHorizontal: 10
   },
 });
 
