@@ -121,7 +121,8 @@ export default class Main extends Component {
           }}>
           <MenuTrigger
             style={{
-              padding: 13,
+              paddingVertia: 5,
+              paddingHorizontal:10
             }}>
             <SafeAreaView>
               <Icon name="dots-three-horizontal" size={20} />

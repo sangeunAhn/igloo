@@ -1,5 +1,5 @@
 import React from 'react';
-import {AsyncStorage} from 'react-native';
+import {AsyncStorage, ImageBackground} from 'react-native';
 import {
   LoginButton,
   AccessToken,
@@ -70,7 +70,9 @@ export default class MasonryList extends React.Component {
 
   render() {
     return (
+      <ImageBackground style={{zIndex:1, width:200, height:20}}source={require('../../images/facebook.png')}>
       <LoginButton
+      source={require('../../images/facebook.png')}
         onLoginFinished={(error, result) => {
           if (error) {
             console.log('login has error: ' + result.error);
@@ -99,6 +101,7 @@ export default class MasonryList extends React.Component {
         }}
         onLogoutFinished={() => console.log('logout.')}
       />
+      </ImageBackground>
     );
   }
 }

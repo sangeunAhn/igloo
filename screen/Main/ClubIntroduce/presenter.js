@@ -45,7 +45,7 @@ const ClubIntroduce = props => (
       isVisible={props.isImageViewVisible}
     />
     {props.isGetting1 && props.isGetting2 ? (
-      <Swiper>
+      <Swiper paginationStyle={{bottom:10}} loop={false}>
         <View style={{flex: 1, backgroundColor: '#FAFAFA'}}>
           <TouchableOpacity
             style={styles.backBtn}
@@ -56,7 +56,7 @@ const ClubIntroduce = props => (
               <Ionicons
                 name="ios-arrow-back"
                 size={width * 0.08}
-                color="white"
+                color="black"
               />
             </SafeAreaView>
           </TouchableOpacity>
@@ -90,36 +90,24 @@ const ClubIntroduce = props => (
               }}>
               <View
                 style={{
-                  height: 110,
+                  top:-15,
+                  height: 90,
                   marginTop: 50,
                   flex: 1,
                   flexDriection: 'column',
                   alignItems: 'center',
                   justifyContent: 'space-between',
                 }}>
-                <Text style={{fontSize: 25, fontWeight: 'bold'}}>
+                <Text style={{fontSize: 30, fontWeight: 'bold'}}>
                   {props.clubName}
                 </Text>
-                <Text note>
+                <Text >
                   {' '}
                   {props.clubChar.map((char, i) => {
-                    return <ClubChars chars={char} key={i} />;
+                    return <ClubChars fontSize={14} chars={char} key={i} />;
                   })}
                 </Text>
-                <TouchableOpacity
-                  style={{
-                    justifyContent: 'center',
-                    width: 80,
-                    height: 25,
-                    backgroundColor: '#a7bfe8',
-                    borderRadius: 10,
-                  }}
-                  onPress={props.gotoRecord}>
-                  <Text
-                    style={{textAlign: 'center', color: 'white', fontSize: 15}}>
-                    기록
-                  </Text>
-                </TouchableOpacity>
+               
               </View>
 
               <Thumbnail
@@ -341,11 +329,33 @@ const ClubIntroduce = props => (
           </View>
         </View>
         <View style={{flex: 1}}>
+        <TouchableOpacity
+                style={styles.backBtn}
+                onPress={() => {
+                  props.navigation.goBack();
+                }}>
+                <SafeAreaView>
+                  <Ionicons
+                    name="ios-arrow-back"
+                    size={width * 0.08}
+                    color="black"
+                  />
+                </SafeAreaView>
+              </TouchableOpacity>
+          <View >
+            <Text style={{fontSize:width * 0.05, fontWeight:'bold', marginTop:50, marginLeft:15}}>모임 소개</Text>
+          </View>
           <ScrollView style={styles.introBox} nestedScrollEnabled={true}>
             <Text style={{paddingVertical: 15, paddingHorizontal: 10}}>
               {props.clubIntroduce}
             </Text>
           </ScrollView>
+          <Text style={{fontSize:width * 0.05, fontWeight:'bold', marginTop:30, marginLeft:15, top:-30}}> 연락 가능 연락처 </Text>
+          <View style={styles.phone}>
+              <Text style={{paddingVertical: 15, paddingHorizontal: 10}}>
+                {props.clubPhoneNumber}
+              </Text>
+          </View>
         </View>
         <>
           {props.recordIsGetting ? (
@@ -391,7 +401,8 @@ const ClubIntroduce = props => (
                   titleStyle={{
                     // paddingTop: Platform.OS === 'ios' ? 15 : 0,
                     color: '#3B3B3B',
-                    fontSize: width * 0.09,
+                    fontSize: width * 0.075,
+                    marginBottom:10
                   }}
                   fadeDirection="up"
                   title="동아리 기록">
@@ -539,8 +550,9 @@ const styles = StyleSheet.create({
   introBox: {
     borderRadius: 5,
     backgroundColor: 'white',
-    top: 10,
-    marginVertical: width * 0.13,
+    top: 0,
+    marginBottom: width * 0.05,
+    marginTop:width*0.04,
     marginHorizontal: width * 0.07,
     shadowColor: '#E1E1E1',
     shadowOffset: {height: 1.5, width: 0},
@@ -548,6 +560,21 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     elevation: 1.5,
   },
+  phone:{
+    top:-30,
+    borderRadius: 5,
+    backgroundColor: 'white',
+    marginBottom: width * 0.13,
+    marginTop:width*0.04,
+    marginHorizontal: width * 0.07,
+    shadowColor: '#E1E1E1',
+    shadowOffset: {height: 1.5, width: 0},
+    shadowOpacity: 5,
+    shadowRadius: 3,
+    elevation: 1.5,
+    width:'85%',
+    height:40
+  }
 });
 
 export default ClubIntroduce;

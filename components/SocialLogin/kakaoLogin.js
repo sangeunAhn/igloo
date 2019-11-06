@@ -132,17 +132,16 @@ export default function App(props) {
         alignItems: 'center',
         marginTop: 30,
         backgroundColor: '#F7E314',
-        width: width * 0.55,
+        width: width * 0.8,
         height: height * 0.06,
       }}
       onPress={kakaoLogin}>
       <Image
-        style={{width: width * 0.1, height: height * 0.04}}
+       style={{ width: width*0.8,
+        height: height * 0.06,}}
         source={require('../../images/kakao.png')}
       />
-      <Text style={{color: '#3C1E1E', fontWeight: 'bold'}}>
-        카카오톡으로 로그인
-      </Text>
+      
     </TouchableOpacity>
   );
 }
