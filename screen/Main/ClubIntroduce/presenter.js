@@ -1,35 +1,26 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {
   StyleSheet,
   Platform,
   View,
-  Image,
   Dimensions,
   ScrollView,
   ActivityIndicator,
   TouchableOpacity,
   SafeAreaView,
-  StatusBar,
   ImageBackground,
 } from 'react-native';
-import IntroduceChars from '../../../components/Char/IntroduceChars';
 import HeaderScrollView from 'react-native-header-scroll-view';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {getStatusBarHeight, ifIphoneX} from 'react-native-iphone-x-helper';
+import {ifIphoneX} from 'react-native-iphone-x-helper';
 import ImageView from 'react-native-image-view';
-import FastImage from 'react-native-fast-image';
 import Swiper from 'react-native-swiper';
 import {Slider} from 'react-native-elements';
-import * as Animatable from 'react-native-animatable';
 import {Thumbnail, Text} from 'native-base';
 import ClubChars from '../../../components/Char/ClubChars';
-import ViewOverflow from 'react-native-view-overflow';
+import MasonryView from '../../../components/Photo/MasonryList';
 
 const {width, height} = Dimensions.get('window');
-// handleViewRef = ref => (this.view = ref);
-
-// bounce = () => this.view.fadeIn(2000);
-
 const ClubIntroduce = props => (
   <>
     <ImageView
@@ -40,7 +31,6 @@ const ClubIntroduce = props => (
           },
           title: '메인사진',
           width: width,
-          // height: props.imgHeight,
         },
         {
           source: {
@@ -216,7 +206,7 @@ const ClubIntroduce = props => (
               </Text>
               <Slider
                 disabled={true}
-                value={props.clubSize}
+                value={props.clubAutonomous}
                 style={{width: width * 0.55}}
                 minimumTrackTintColor="#A9DFE2"
                 maximumTrackTintColor="#D1D5FA"
@@ -266,7 +256,7 @@ const ClubIntroduce = props => (
               </Text>
               <Slider
                 disabled={true}
-                value={props.clubSize}
+                value={props.clubFunny}
                 style={{width: width * 0.55}}
                 minimumTrackTintColor="#A9DFE2"
                 maximumTrackTintColor="#D1D5FA"
@@ -316,7 +306,7 @@ const ClubIntroduce = props => (
               </Text>
               <Slider
                 disabled={true}
-                value={props.clubSize}
+                value={props.clubFriendship}
                 style={{width: width * 0.55}}
                 minimumTrackTintColor="#A9DFE2"
                 maximumTrackTintColor="#D1D5FA"
@@ -351,302 +341,82 @@ const ClubIntroduce = props => (
           </View>
         </View>
         <View style={{flex: 1}}>
-          <ScrollView
-            style={{
-              borderRadius: 5,
-              backgroundColor: 'white',
-              margin: width * 0.07,
-              shadowColor: '#E1E1E1',
-              shadowOffset: {height: 1.5, width: 0},
-              shadowOpacity: 5,
-              shadowRadius: 3,
-              elevation: 1.5,
-            }}
-            nestedScrollEnabled={true}>
+          <ScrollView style={styles.introBox} nestedScrollEnabled={true}>
             <Text style={{paddingVertical: 15, paddingHorizontal: 10}}>
               {props.clubIntroduce}
             </Text>
           </ScrollView>
         </View>
+        <>
+          {props.recordIsGetting ? (
+            <View style={styles.container}>
+              <TouchableOpacity
+                style={styles.backBtn}
+                onPress={() => {
+                  props.navigation.goBack();
+                }}>
+                <SafeAreaView>
+                  <Ionicons
+                    name="ios-arrow-back"
+                    size={width * 0.08}
+                    color="black"
+                  />
+                </SafeAreaView>
+              </TouchableOpacity>
+              <View style={styles.container}>
+                <HeaderScrollView
+                  containerStyle={{backgroundColor: '#FAFAFA'}}
+                  headerContainerStyle={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    ...ifIphoneX({paddingTop: 18}, {paddingTop: 0}),
+                    height:
+                      Platform.OS === 'ios' ? height * 0.1 : height * 0.08,
+                  }}
+                  headlineStyle={{
+                    height: height * 0.1,
+                    textAlign: 'center',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    alignSelf: 'center',
+                    fontSize: width * 0.05,
+                    paddingTop:
+                      Platform.OS === 'ios' ? height * 0.055 : height * 0.048,
+                  }}
+                  headerComponentContainerStyle={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: height * 0.08,
+                  }}
+                  titleStyle={{
+                    // paddingTop: Platform.OS === 'ios' ? 15 : 0,
+                    color: '#3B3B3B',
+                    fontSize: width * 0.09,
+                  }}
+                  fadeDirection="up"
+                  title="동아리 기록">
+                  {props.imageRoom.length === 0 ? (
+                    <>
+                      <View style={styles.noImageView}>
+                        <Text style={styles.noImageText}>
+                          활동 사진이 없습니다.
+                        </Text>
+                      </View>
+                    </>
+                  ) : (
+                    <MasonryView {...props} />
+                  )}
+                </HeaderScrollView>
+              </View>
+            </View>
+          ) : (
+            <View style={styles.loading}>
+              <ActivityIndicator size="large" />
+            </View>
+          )}
+        </>
       </Swiper>
     ) : (
-      // <View style={styles.container}>
-      //   <TouchableOpacity
-      //     style={styles.backBtn}
-      //     onPress={() => {
-      //       props.navigation.goBack();
-      //     }}>
-      //     <SafeAreaView>
-      //       <Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
-      //     </SafeAreaView>
-      //   </TouchableOpacity>
-      //   <View
-      //     style={{
-      //       alignItems: 'center',
-      //       marginTop: Platform.OS === 'ios' ? 30 : 15,
-      //     }}>
-      //     <Text style={{fontSize: width * 0.05}}>동아리 소개</Text>
-      //   </View>
-      //   {/* <HeaderScrollView
-      //     headerContainerStyle={{
-      //       justifyContent: 'center',
-      //       alignItems: 'center',
-      //       ...ifIphoneX({paddingTop: 18}, {paddingTop: 0}),
-      //       height: Platform.OS === 'ios' ? height * 0.1 : height * 0.08,
-      //     }}
-      //     headlineStyle={{
-      //       height: height * 0.1,
-      //       textAlign: 'center',
-      //       justifyContent: 'center',
-      //       alignItems: 'center',
-      //       alignSelf: 'center',
-      //       fontSize: width * 0.05,
-      //       paddingTop: Platform.OS === 'ios' ? height * 0.055 : height * 0.048,
-      //     }}
-      //     headerComponentContainerStyle={{
-      //       justifyContent: 'center',
-      //       alignItems: 'center',
-      //       height: height * 0.08,
-      //     }}
-      //     titleStyle={{
-      //       // paddingTop: Platform.OS === 'ios' ? 15 : 0,
-      //       color: '#3B3B3B',
-      //       fontSize: width * 0.09,
-      //     }}
-      //     fadeDirection="up"
-      //     title="동아리 소개"> */}
-
-      //   <Swiper onIndexChanged={this.bounce} loop={false}>
-      //     <View
-      //       style={{
-      //         flex: 1,
-      //         paddingTop: Platform.OS === 'ios' ? -30 : -15,
-      //         justifyContent: 'center',
-      //       }}>
-      // <TouchableOpacity
-      //   style={styles.MainPictureView}
-      //   onPress={props.imageViewVisible1}>
-      //   {props.clubMainPicture === null || props.clubMainPicture == '' ? (
-      //     <View style={styles.clubMainPicture} />
-      //   ) : (
-      //     <FastImage
-      //       style={styles.clubMainPicture}
-      //       source={{uri: props.clubMainPicture}}
-      //     />
-      //   )}
-      // </TouchableOpacity>
-
-      // <View style={styles.logoView1}>
-      //   {
-      //     <TouchableOpacity
-      //       style={styles.logoView2}
-      //       onPress={props.imageViewVisible2}>
-      //       {props.clubLogo === null || props.clubLogo == '' ? (
-      //         <FastImage style={styles.clubLogo} />
-      //       ) : (
-      //         <FastImage
-      //           style={styles.clubLogo}
-      //           source={{uri: props.clubLogo}}
-      //         />
-      //       )}
-      //     </TouchableOpacity>
-      //   }
-      // </View>
-      //       <Text
-      //         style={{
-      //           textAlign: 'center',
-      //           color: 'black',
-      //           marginTop: -height * 0.05,
-      //           fontSize: height * 0.028,
-      //         }}>
-      //         {props.clubName}
-      //       </Text>
-      //     </View>
-
-      //     <Animatable.View  ref={this.handleViewRef} useNativeDriver={true}
-      //       style={{flex: 1, }}>
-
-      //      <View style={{marginLeft:width*0.06, marginTop:height*0.08, marginBottom:height*0.1}}>
-      //        <Text style={{fontSize:width*0.08, color:'#636363'}}>우리 {"\n"}동아리/모임은요</Text>
-      //      </View>
-      //  <View  style={{backgroundColor:'white'}}>
-      //   <View
-      //     style={{
-      //       alignItems: 'center',
-      //       justifyContent: 'center',
-      //       flexDirection: 'row',
-      //       marginVertical:height*0.015,
-      //     }}>
-      //     <Text
-      //       style={{
-      //         color: '#003964',
-      //         width: width * 0.2,
-      //         textAlign: 'center',
-      //         fontSize: width * 0.035,
-      //       }}>
-      //       소규모
-      //     </Text>
-      //     <Slider
-      //       disabled={true}
-      //       value={props.clubSize}
-      //       style={{width: width * 0.6}}
-      //       minimumTrackTintColor="#A9DFE2"
-      //       maximumTrackTintColor="#D1D5FA"
-      //       thumbTintColor="white"
-      //       thumbStyle={{borderWidth:3.5, borderColor:'#ADCDE9', width: 18, height: 18, borderRadius: 18*0.5}}
-      //       trackStyle={{height: 3}}
-      //     />
-      //     <Text
-      //       style={{
-      //         color: '#580000',
-      //         width: width * 0.2,
-      //         textAlign: 'center',
-      //         fontSize: width * 0.035,
-      //       }}>
-      //       대규모
-      //     </Text>
-      //   </View>
-      //   <View style={{alignSelf:'center',width:width*0.8, height:0.2, backgroundColor:'#D8D8D8'}}/>
-      //   <View
-      //     style={{
-      //       alignItems: 'center',
-      //       justifyContent: 'center',
-      //       flexDirection: 'row',
-      //       marginVertical:height*0.015,
-      //     }}>
-      //     <Text
-      //       style={{
-      //         color: '#003964',
-      //         width: width * 0.2,
-      //         textAlign: 'center',
-      //         fontSize: width * 0.035,
-      //       }}>
-      //       자율적인
-      //     </Text>
-      //     <Slider
-      //       disabled={true}
-      //       value={props.clubSize}
-      //       style={{width: width * 0.6}}
-      //       minimumTrackTintColor="#A9DFE2"
-      //       maximumTrackTintColor="#D1D5FA"
-      //       thumbTintColor="white"
-      //       thumbStyle={{borderWidth:3.5, borderColor:'#ADCDE9', width: 18, height: 18, borderRadius: 18*0.5}}
-      //       trackStyle={{height: 3}}
-      //     />
-      //     <Text
-      //       style={{
-      //         color: '#580000',
-      //         width: width * 0.2,
-      //         textAlign: 'center',
-      //         fontSize: width * 0.035,
-      //       }}>
-      //       체계적인
-      //     </Text>
-      //   </View>
-      //   <View style={{alignSelf:'center',width:width*0.8, height:0.2, backgroundColor:'#D8D8D8'}}/>
-      //   <View
-      //     style={{
-      //       alignItems: 'center',
-      //       justifyContent: 'center',
-      //       flexDirection: 'row',
-      //       marginVertical:height*0.015,
-      //     }}>
-      //     <Text
-      //       style={{
-      //         color: '#003964',
-      //         width: width * 0.2,
-      //         textAlign: 'center',
-      //         fontSize: width * 0.035,
-      //       }}>
-      //       재미있는
-      //     </Text>
-      //     <Slider
-      //       disabled={true}
-      //       value={props.clubSize}
-      //       style={{width: width * 0.6}}
-      //       minimumTrackTintColor="#A9DFE2"
-      //       maximumTrackTintColor="#D1D5FA"
-      //       thumbTintColor="white"
-      //       thumbStyle={{borderWidth:3.5, borderColor:'#ADCDE9', width: 18, height: 18, borderRadius: 18*0.5}}
-      //       trackStyle={{height: 3}}
-      //     />
-      //     <Text
-      //       style={{
-      //         color: '#580000',
-      //         width: width * 0.2,
-      //         textAlign: 'center',
-      //         fontSize: width * 0.035,
-      //       }}>
-      //       진지한
-      //     </Text>
-      //   </View>
-      //   <View style={{alignSelf:'center',width:width*0.8, height:0.2, backgroundColor:'#D8D8D8'}}/>
-      //   <View
-      //     style={{
-      //       alignItems: 'center',
-      //       justifyContent: 'center',
-      //       flexDirection: 'row',
-      //       marginVertical:height*0.015,
-      //     }}>
-      //     <Text
-      //       style={{
-      //         color: '#003964',
-      //         width: width * 0.2,
-      //         textAlign: 'center',
-      //         fontSize: width * 0.035,
-      //       }}>
-      //       친목도모
-      //     </Text>
-      //     <Slider
-      //       disabled={true}
-      //       value={props.clubSize}
-      //       style={{width: width * 0.6}}
-      //       minimumTrackTintColor="#A9DFE2"
-      //       maximumTrackTintColor="#D1D5FA"
-      //       thumbTintColor="white"
-      //       thumbStyle={{borderWidth:3.5, borderColor:'#ADCDE9', width: 18, height: 18, borderRadius: 18*0.5}}
-      //       trackStyle={{height: 3}}
-      //     />
-      //     <Text
-      //       style={{
-      //         color: '#580000',
-      //         width: width * 0.2,
-      //         textAlign: 'center',
-      //         fontSize: width * 0.035,
-      //       }}>
-      //       활동중심
-      //     </Text>
-      //   </View>
-      //   <View style={{alignSelf:'center',width:width*0.8, height:0.2, backgroundColor:'#D8D8D8'}}/>
-      //   </View>
-      //   <View style={styles.chars}>
-      //     {props.clubChar.map((char, index) => (
-      //       <IntroduceChars key={index} char={char} />
-      //     ))}
-      //   </View>
-      //     </Animatable.View >
-
-      //     <View style={{flex: 1}}>
-      // <ScrollView
-      //   style={{
-      //     borderRadius: 5,
-      //     backgroundColor: 'white',
-      //     margin: width * 0.05,
-      //     shadowColor: '#E1E1E1',
-      //     shadowOffset: {height: 1.5, width: 0},
-      //     shadowOpacity: 5,
-      //     shadowRadius: 3,
-      //     elevation: 1.5,
-      //   }}
-      //   nestedScrollEnabled={true}>
-      //   <Text style={{paddingVertical: 10, paddingHorizontal: 5}}>
-      //     {props.clubIntroduce}
-      //   </Text>
-      // </ScrollView>
-      //     </View>
-      //   </Swiper>
-      //   {/* </HeaderScrollView> */}
-      // </View>
       <ActivityIndicator size="large" style={styles.activityIndicator} />
     )}
   </>
@@ -746,6 +516,37 @@ const styles = StyleSheet.create({
     height: height * 0.35,
     borderRadius: 5,
     backgroundColor: '#CEE1F2',
+  },
+  noImageView: {
+    width: width,
+    paddingTop: height * 0.01,
+    height: height * 0.6,
+    justifyContent: 'center',
+    alignContent: 'center',
+  },
+  noImageText: {
+    fontSize: width * 0.035,
+    color: '#BBBBBB',
+    textAlign: 'center',
+    alignSelf: 'center',
+  },
+  loading: {
+    width,
+    height: height * 0.7,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  introBox: {
+    borderRadius: 5,
+    backgroundColor: 'white',
+    top: 10,
+    marginVertical: width * 0.13,
+    marginHorizontal: width * 0.07,
+    shadowColor: '#E1E1E1',
+    shadowOffset: {height: 1.5, width: 0},
+    shadowOpacity: 5,
+    shadowRadius: 3,
+    elevation: 1.5,
   },
 });
 

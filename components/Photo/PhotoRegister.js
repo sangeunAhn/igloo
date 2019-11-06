@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {
   StyleSheet,
   Dimensions,
@@ -22,7 +22,6 @@ export default class ClubChars extends React.Component {
 
   componentDidMount() {
     Permissions.check('photo').then(response => {
-      // Response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
       this.setState({photoPermission: response});
     });
   }
@@ -56,7 +55,6 @@ export default class ClubChars extends React.Component {
 
   // 이미지피커
   _pickImage = async () => {
-
     const options = {
       title: 'Select Avatar',
       customButtons: [{name: 'fb', title: 'Choose Photo from Facebook'}],
@@ -67,11 +65,10 @@ export default class ClubChars extends React.Component {
       quality: 0.5,
     };
 
-    Permissions.request('photo').then(response => {
-      this.setState({photoPermission: response});
-    });
+    const response = await Permissions.request('photo');
+    this.setState({photoPermission: response});
 
-    if (this.state.photoPermission == 'authorized') {
+    if (this.state.photoPermission === 'authorized') {
       setTimeout(() => {
         this.props.changeAddLoading();
       }, 1000);

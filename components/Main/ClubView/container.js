@@ -45,8 +45,7 @@ export default class Container extends Component {
   _gotoClubIntroduce = () => {
     this._onClose();
     this.props.navigation.navigate('ClubIntroduce', {
-      clubName: this.props.clubName,
-      school: this.props.school,
+      clubNo: this.props.clubNo,
     });
   };
 
@@ -59,14 +58,13 @@ export default class Container extends Component {
   };
 
   _getDatas = () => {
-    const {clubName, school} = this.props;
+    const {clubNo} = this.props;
     const {clubChar} = this.state;
 
     // 데이터 가져오기
     axios
       .post('http://13.209.221.206/php/Main/GetClubChars.php', {
-        clubName: clubName,
-        school: school,
+        clubNo,
       })
       .then(result => {
         const response = result.data;
@@ -83,7 +81,7 @@ export default class Container extends Component {
   };
 
   _press = () => {
-    this.state.disabled == true
+    this.state.disabled === true
       ? this.setState({disabled: false})
       : this.setState({disabled: true});
   };

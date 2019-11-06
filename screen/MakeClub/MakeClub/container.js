@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, PermissionsAndroid, Image} from 'react-native';
+import {Alert, Image} from 'react-native';
 import * as axios from 'axios';
 import ImagePicker from 'react-native-image-picker';
 import Permissions from 'react-native-permissions';
@@ -187,9 +187,8 @@ class Container extends Component {
       quality: 0.4,
     };
 
-    // Permissions.request('photo').then(response => {
-    //   this.setState({photoPermission: response});
-    // });
+    const response = await Permissions.request('photo');
+    this.setState({photoPermission: response});
 
     ImagePicker.launchImageLibrary(options, response => {
       Image.getSize(response.uri, (width, height) => {
@@ -212,9 +211,8 @@ class Container extends Component {
       quality: 0.4,
     };
 
-    // Permissions.request('photo').then(response => {
-    //   this.setState({photoPermission: response});
-    // });
+    const response = await Permissions.request('photo');
+    this.setState({photoPermission: response});
 
     ImagePicker.launchImageLibrary(options, response => {
       this.setState({

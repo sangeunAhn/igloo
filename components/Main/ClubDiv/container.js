@@ -7,13 +7,18 @@ class Container extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      clubNo: [],
       clubName: [],
       clubLogo: [],
       clubMainPicture: [],
     };
-    if (this.props.navigation.getParam('from', 'NO-ID') === 'makeRecord') {
+    if (
+      this.props.navigation.getParam('from', 'NO-ID') === 'makeClub' ||
+      this.props.navigation.getParam('from', 'NO-ID') === 'updateClub'
+    ) {
       this.props.navigation.addListener('didFocus', async () => {
         await this.setState({
+          clubNo: [],
           clubName: [],
           clubLogo: [],
           clubMainPicture: [],
@@ -30,12 +35,11 @@ class Container extends Component {
   }
 
   render() {
-    console.log(this.state.clubName);
     return <ClubDiv {...this.state} {...this.props} />;
   }
 
   _getDatas = async () => {
-    const {clubName, clubLogo, clubMainPicture} = this.state;
+    const {clubNo, clubName, clubLogo, clubMainPicture} = this.state;
     const {school, clubKind} = this.props;
     this.setState({school});
 
@@ -47,17 +51,20 @@ class Container extends Component {
       })
       .then(result => {
         const response = result.data;
+        var clubNoArray = new Array();
         var clubNameArray = new Array();
         var clubLogoArray = new Array();
         var clubMainPictureArray = new Array();
 
         response.forEach(row => {
+          clubNoArray.push(row.clubNo);
           clubNameArray.push(row.clubName);
           clubLogoArray.push(row.clubLogo_low);
           clubMainPictureArray.push(row.clubMainPicture_low);
         });
 
         this.setState({
+          clubNo: clubNo.concat(clubNoArray),
           clubName: clubName.concat(clubNameArray),
           clubLogo: clubLogo.concat(clubLogoArray),
           clubMainPicture: clubMainPicture.concat(clubMainPictureArray),

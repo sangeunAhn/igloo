@@ -12,9 +12,10 @@ const ClubDiv = props => (
         <View style={styles.line} />
       </View>
     </View>
-    {props.clubName.map((name, i) => {
+    {props.clubNo.map((name, i) => {
       return (
         <ClubView
+          clubNo={props.clubNo[i]}
           clubName={props.clubName[i]}
           clubLogo={props.clubLogo[i]}
           clubMainPicture={props.clubMainPicture[i]}

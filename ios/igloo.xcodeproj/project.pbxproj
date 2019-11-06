@@ -47,6 +47,8 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* iglooTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iglooTests.m; sourceTree = "<group>"; };
 		03F274E819E0B113D71AF7C1 /* Pods-igloo-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-igloo-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-igloo-tvOSTests/Pods-igloo-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		064FD471FFFC430CA790E76B /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
+		0DE1DD984E334855A7867608 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* igloo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = igloo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = igloo/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = igloo/AppDelegate.m; sourceTree = "<group>"; };
@@ -57,18 +59,32 @@
 		147D205ACED46132B9D7CD1F /* Pods-igloo-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-igloo-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-igloo-tvOSTests/Pods-igloo-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* igloo-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "igloo-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* igloo-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "igloo-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		32B28F999FAC44F9B70B6FDA /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
+		3F33154AC19B4E59A3A3FFC9 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
+		40A17FE3A88B4C86AF702485 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		4ABD961FBC7EE4B44CA5ED62 /* Pods-igloo-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-igloo-tvOS.release.xcconfig"; path = "Target Support Files/Pods-igloo-tvOS/Pods-igloo-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		536500AF9C4146639D58ABCB /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
+		61A7327F6BC64241B03D2D3B /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
+		702AD9A4298346368C000246 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		74FE9A5B5C4637063D160681 /* Pods-igloo-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-igloo-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-igloo-tvOS/Pods-igloo-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		79723852ECF22CF89448DC1A /* libPods-igloo-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-igloo-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		80DFADEB990F4E2A8B145FE3 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
+		8FA8CBFFCAE84225A711C396 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
+		99F87080EE4B4035B00BED0B /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		9F4DAA43B3938FD6755C8160 /* Pods-iglooTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iglooTests.debug.xcconfig"; path = "Target Support Files/Pods-iglooTests/Pods-iglooTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A5683E93E99A41F5B4A7952F /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		A65CA600236A8C8C005975FE /* KakaoOpenSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaoOpenSDK.framework; sourceTree = "<group>"; };
 		A73A7AC7830DE1033C0301AC /* libPods-igloo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-igloo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B510F195D1E5DD5BF809C0B6 /* libPods-iglooTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iglooTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB9CF116A8744F379A9571E9 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
+		C466FA12E891456580B4A091 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
+		CEB171B7034C49C893FED124 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		D739182A1AA67537B449135F /* Pods-igloo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-igloo.release.xcconfig"; path = "Target Support Files/Pods-igloo/Pods-igloo.release.xcconfig"; sourceTree = "<group>"; };
 		DD24374C4BB856B3B75B4195 /* Pods-iglooTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iglooTests.release.xcconfig"; path = "Target Support Files/Pods-iglooTests/Pods-iglooTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F36269E6F195E25FF92D4D92 /* Pods-igloo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-igloo.debug.xcconfig"; path = "Target Support Files/Pods-igloo/Pods-igloo.debug.xcconfig"; sourceTree = "<group>"; };
+		F5188138595C42DFBA087089 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +155,29 @@
 			name = igloo;
 			sourceTree = "<group>";
 		};
+		1D58B9BBF08D44B9A4984268 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C466FA12E891456580B4A091 /* AntDesign.ttf */,
+				3F33154AC19B4E59A3A3FFC9 /* Entypo.ttf */,
+				064FD471FFFC430CA790E76B /* EvilIcons.ttf */,
+				61A7327F6BC64241B03D2D3B /* Feather.ttf */,
+				8FA8CBFFCAE84225A711C396 /* FontAwesome.ttf */,
+				536500AF9C4146639D58ABCB /* FontAwesome5_Brands.ttf */,
+				40A17FE3A88B4C86AF702485 /* FontAwesome5_Regular.ttf */,
+				702AD9A4298346368C000246 /* FontAwesome5_Solid.ttf */,
+				80DFADEB990F4E2A8B145FE3 /* Fontisto.ttf */,
+				32B28F999FAC44F9B70B6FDA /* Foundation.ttf */,
+				A5683E93E99A41F5B4A7952F /* Ionicons.ttf */,
+				99F87080EE4B4035B00BED0B /* MaterialCommunityIcons.ttf */,
+				0DE1DD984E334855A7867608 /* MaterialIcons.ttf */,
+				CEB171B7034C49C893FED124 /* Octicons.ttf */,
+				BB9CF116A8744F379A9571E9 /* SimpleLineIcons.ttf */,
+				F5188138595C42DFBA087089 /* Zocial.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +208,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				DFB861FBDCE5F17E211B99BD /* Pods */,
+				1D58B9BBF08D44B9A4984268 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -289,7 +329,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 940;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {

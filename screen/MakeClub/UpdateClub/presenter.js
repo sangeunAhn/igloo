@@ -24,8 +24,6 @@ const UpdateClub = props => (
         </SafeAreaView>
       </TouchableOpacity>
 
-      <Text style={styles.screenTitle}>동아리 수정</Text>
-
       <View style={styles.container}>
         <View style={{alignItems: 'center'}}>
           <UpdateButton
@@ -46,24 +44,8 @@ const UpdateClub = props => (
             press={props.gotoRecord}
           />
         </View>
-        {/* <View
-          style={{
-            flex: 1,
-            alignItems: 'flex-start',
-            justifyContent: 'flex-end',
-            height: height * 0.07,
-            bottom: 20,
-          }}>
-          <TouchableOpacity
-            style={{padding: height * 0.01}}
-            onPress={props.goodBye}>
-            <Text
-              style={{color: '#888888', fontSize: height * 0.018, padding: 4}}>
-              탈퇴하기
-            </Text>
-          </TouchableOpacity>
-        </View> */}
       </View>
+      <Text style={styles.screenTitle}>동아리 수정</Text>
     </View>
   </>
 );
@@ -80,7 +62,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    paddingTop: height * 0.15,
+    paddingTop: width * 0.09,
     justifyContent: 'center',
   },
   screenTitle: {
@@ -89,6 +71,7 @@ const styles = StyleSheet.create({
     fontSize: width * 0.09,
     fontWeight: '700',
     backgroundColor: '#FAFAFA',
+    position: 'absolute',
   },
   box1: {
     width: width * 0.9,

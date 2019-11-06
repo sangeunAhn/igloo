@@ -1,4 +1,5 @@
 import React from 'react';
+import {AsyncStorage} from 'react-native';
 import {
   LoginButton,
   AccessToken,
@@ -16,7 +17,7 @@ export default class MasonryList extends React.Component {
     const {navigation} = this.props;
 
     let formData = new FormData();
-    formData.append('id', 'fb' + id);
+    formData.append('id', id);
 
     // 데이터베이스에 넣기
     await fetch('http://13.209.221.206/php/Login/makeUser.php', {
@@ -27,7 +28,7 @@ export default class MasonryList extends React.Component {
       },
     });
 
-    navigation.navigate('Schools', {
+    navigation.navigate('RegisterSchool', {
       userId: id,
     });
   };
@@ -49,12 +50,21 @@ export default class MasonryList extends React.Component {
         })
         .then(function(response) {
           var ms = response.data.message;
+          this._storeData('fb' + result.id);
           {
             ms === 'true'
               ? t._gotoSchool('fb' + result.id)
               : t._makeUser('fb' + result.id);
           }
         });
+    }
+  };
+
+  _storeData = async id => {
+    try {
+      await AsyncStorage.setItem('userId', id);
+    } catch (error) {
+      console.log('스토리지에 ID 저장 안됨.');
     }
   };
 
@@ -67,7 +77,6 @@ export default class MasonryList extends React.Component {
           } else if (result.isCancelled) {
             console.log('login is cancelled.');
           } else {
-            console.log(result);
             AccessToken.getCurrentAccessToken().then(data => {
               console.log(data.accessToken.toString());
               const infoRequest = new GraphRequest(

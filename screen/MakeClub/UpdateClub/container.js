@@ -1,5 +1,4 @@
 import React from 'react';
-import {Alert} from 'react-native';
 import UpdateClub from './presenter';
 
 export default class ClubModify extends React.Component {
@@ -7,6 +6,10 @@ export default class ClubModify extends React.Component {
   static navigationOptions = {
     header: null,
   };
+  constructor(props) {
+    super(props);
+    this._handleBackButtonClick = this._handleBackButtonClick.bind(this);
+  }
   render() {
     return (
       <UpdateClub
@@ -18,6 +21,10 @@ export default class ClubModify extends React.Component {
     );
   }
 
+  _handleBackButtonClick = () => {
+    this.props.navigation.goBack();
+    return true;
+  };
 
   _gotoSignUp = () => {
     const {navigation} = this.props;

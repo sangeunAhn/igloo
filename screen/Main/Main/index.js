@@ -5,7 +5,6 @@ import {
   View,
   TouchableOpacity,
   Platform,
-  BackHandler,
   SafeAreaView,
   Text,
 } from 'react-native';
@@ -13,7 +12,20 @@ import ClubDiv from '../../../components/Main/ClubDiv';
 import HeaderScrollView from 'react-native-header-scroll-view';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {ifIphoneX} from 'react-native-iphone-x-helper';
+import ActionButton from 'react-native-action-button';
+import Icon from 'react-native-vector-icons/Entypo';
 import * as axios from 'axios';
+import {
+  Menu,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+} from 'react-native-popup-menu';
+import {
+  Collapse,
+  CollapseHeader,
+  CollapseBody,
+} from 'accordion-collapse-react-native';
 
 const {width, height} = Dimensions.get('window');
 
@@ -23,26 +35,26 @@ export default class Main extends Component {
   });
   constructor(props) {
     super(props);
-    this._handleBackButtonClick = this._handleBackButtonClick.bind(this);
+    this.state = {
+      kindsOrder: [],
+    };
   }
 
   UNSAFE_componentWillMount = () => {
-    BackHandler.addEventListener(
-      'hardwareBackPress',
-      this._handleBackButtonClick,
-    );
+    this._KindsOrder();
   };
 
-  UNSAFE_componentWillUnmount() {
-    BackHandler.removeEventListener(
-      'hardwareBackPress',
-      this._handleBackButtonClick,
-    );
-  }
-
-  _handleBackButtonClick = () => {
-    this.props.navigation.navigate('Schools');
-    return true;
+  _KindsOrder = () => {
+    var kinds = ['예술 공연', '예술 교양', '체육 구기', '체육 생활'];
+    var kindsOrder = [];
+    let someArray = [1, 2, 3, 4];
+    someArray.sort(function(a, b) {
+      return 0.5 - Math.random();
+    });
+    for (var i = 0; i < 4; i++) {
+      kindsOrder.push(kinds[someArray[i] - 1]);
+    }
+    this.setState({kindsOrder});
   };
 
   _goToUpdateClub = () => {
@@ -73,7 +85,6 @@ export default class Main extends Component {
         userNo,
       })
       .then(function(response) {
-        console.log(response.data.message);
         var result = response.data.message;
         if (result === 'true') {
           t._goToUpdateClub();
@@ -85,27 +96,52 @@ export default class Main extends Component {
 
   render() {
     const {navigation} = this.props;
+    const {kindsOrder} = this.state;
+    const collapseArray = [true, true, true, true];
     const schoolName = navigation.getParam('schoolName', 'NO-ID');
     const userSchool = navigation.getParam('userSchool', 'NO-ID');
     return (
       <View style={styles.container}>
-        {Platform.OS === 'ios' ? (
-          <TouchableOpacity
-            style={styles.backBtn}
-            onPress={() => {
-              this.props.navigation.navigate('Schools');
+        <TouchableOpacity
+          style={styles.backBtn}
+          onPress={() => {
+            this.props.navigation.navigate('Schools');
+          }}>
+          <SafeAreaView>
+            <Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
+          </SafeAreaView>
+        </TouchableOpacity>
+        <Menu
+          style={{
+            position: 'absolute',
+            right: -3,
+            top: Platform.OS === 'ios' ? 35 : 15,
+            zIndex: 1,
+            // backgroundColor: 'red',
+          }}>
+          <MenuTrigger
+            style={{
+              padding: 13,
             }}>
             <SafeAreaView>
-              <Ionicons
-                name="ios-arrow-back"
-                size={width * 0.08}
-                color="black"
-              />
+              <Icon name="dots-three-horizontal" size={20} />
             </SafeAreaView>
-          </TouchableOpacity>
-        ) : (
-          <></>
-        )}
+          </MenuTrigger>
+          <MenuOptions
+            optionsContainerStyle={{
+              marginTop: 20,
+              borderRadius: 10,
+              width: 100,
+              height: 40,
+              justifyContent: 'center',
+            }}>
+            <MenuOption
+              value={1}
+              onSelect={() => this.props.navigation.navigate('Login')}
+              text="동아리 생성"
+            />
+          </MenuOptions>
+        </Menu>
         <HeaderScrollView
           headerContainerStyle={styles.headerContainerStyle}
           headlineStyle={styles.headlineStyle}
@@ -113,7 +149,59 @@ export default class Main extends Component {
           titleStyle={styles.titleStyle}
           fadeDirection="up"
           title="동아리 찾기">
-          <ClubDiv clubKind={'예술 공연'} school={schoolName} {...this.props} />
+          {kindsOrder.map((kinds, i) => {
+            return (
+              <Collapse
+                isCollapsed={collapseArray[i]}
+                onToggle={isCollapsed =>
+                  collapseArray.splice(i, 1, isCollapsed)
+                }>
+                <CollapseHeader>
+                  <View style={{paddingHorizontal: width * 0.03}}>
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                      }}>
+                      <Text style={styles.menuTitle}>동아리 연합</Text>
+                      {this.state.collapsed1 == true ? (
+                        <Ionicons
+                          style={{alignSelf: 'flex-end', marginBottom: -5}}
+                          name="ios-arrow-up"
+                          size={30}
+                          color="#a7bfe8"
+                        />
+                      ) : (
+                        <Ionicons
+                          style={{alignSelf: 'flex-end', marginBottom: -5}}
+                          name="ios-arrow-down"
+                          size={30}
+                          color="#a7bfe8"
+                        />
+                      )}
+                    </View>
+                    <View
+                      style={{
+                        alignItems: 'flex-end',
+                        marginBottom: height * 0.032,
+                      }}>
+                      <View style={styles.line} />
+                    </View>
+                  </View>
+                </CollapseHeader>
+                <CollapseBody>
+                  <ClubDiv
+                    key={i}
+                    clubKind={kinds}
+                    school={schoolName}
+                    {...this.props}
+                  />
+                </CollapseBody>
+              </Collapse>
+            );
+            // console.log(kinds);
+          })}
+          {/* <ClubDiv clubKind={'예술 공연'} school={schoolName} {...this.props} />
           <ClubDiv clubKind={'예술 교양'} school={schoolName} {...this.props} />
           <ClubDiv clubKind={'체육 구기'} school={schoolName} {...this.props} />
           <ClubDiv clubKind={'체육 생활'} school={schoolName} {...this.props} />
@@ -121,7 +209,7 @@ export default class Main extends Component {
           <ClubDiv clubKind={'국제'} school={schoolName} {...this.props} />
           <ClubDiv clubKind={'종교'} school={schoolName} {...this.props} />
           <ClubDiv clubKind={'학술'} school={schoolName} {...this.props} />
-          <ClubDiv clubKind={'기타'} school={schoolName} {...this.props} />
+          <ClubDiv clubKind={'기타'} school={schoolName} {...this.props} /> */}
         </HeaderScrollView>
         {schoolName === userSchool ? (
           <TouchableOpacity style={styles.addButton} onPress={this._ExistClub}>
@@ -234,5 +322,22 @@ const styles = StyleSheet.create({
   plusText: {
     fontSize: 30,
     color: 'white',
+  },
+  headerRight: {
+    position: 'absolute',
+    right: 0,
+    zIndex: 1,
+  },
+  menuTitle: {
+    paddingTop: height * 0.015,
+    fontWeight: 'bold',
+    color: '#ADCDE9',
+    fontSize: height * 0.03,
+  },
+  line: {
+    borderBottomWidth: height * 0.001,
+    borderColor: '#ADCDE9',
+    width: '85%',
+    alignItems: 'flex-end',
   },
 });

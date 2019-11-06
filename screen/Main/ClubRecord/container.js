@@ -1,9 +1,7 @@
 import React from 'react';
-import {Platform, BackHandler, Image, Dimensions} from 'react-native';
+import {Image, Dimensions} from 'react-native';
 import * as axios from 'axios';
 import ClubRecord from './presenter';
-
-const {width, height} = Dimensions.get('window');
 
 class Container extends React.Component {
   static navigationOptions = {
@@ -15,7 +13,6 @@ class Container extends React.Component {
     this.state = {
       records: [],
       listRecords: [],
-      school: '',
       isGetting: false,
       imageRoom: [],
       recordHeights: [],
@@ -36,33 +33,25 @@ class Container extends React.Component {
 
   UNSAFE_componentWillMount = async () => {
     await this._getImageRoom();
+    this._recordView();
+  };
+
+  _recordView = async () => {
     const {imageRoom} = this.state;
     const t = this;
-
-    BackHandler.addEventListener(
-      'hardwareBackPress',
-      this._handleBackButtonClick,
-    );
     if (imageRoom.length !== 0) {
       for (var item of imageRoom) {
-        await t._getDatas(item);
+        await t._getRecordData(item);
       }
     } else {
-      this.setState({isGetting: true});
+      this.setState({recordIsGetting: true});
     }
     await this.setState({listRecords: this.state.records});
-    this.setState({isGetting: true});
+    this.setState({recordIsGetting: true});
 
     await this._getRecordHeight();
     this._distinguishHeight();
   };
-
-  UNSAFE_componentWillUnmount() {
-    BackHandler.removeEventListener(
-      'hardwareBackPress',
-      this._handleBackButtonClick,
-    );
-  }
 
   _getRecordHeight = async () => {
     const items = [];
@@ -119,16 +108,14 @@ class Container extends React.Component {
   _getImageRoom = async () => {
     //userNo 가지고 오기
     const {navigation} = this.props;
-    var clubName = navigation.getParam('clubName', 'NO-ID');
-    var school = navigation.getParam('school', 'NO-ID');
+    var clubNo = navigation.getParam('clubNo', 'NO-ID');
     const t = this;
     var imageRoomArray = new Array();
 
     // 데이터 가져오기
     await axios
       .post('http://13.209.221.206/php/Main/GetImageRooms2.php', {
-        clubName: clubName,
-        school: school,
+        clubNo,
       })
       .then(result => {
         const response = result.data;
@@ -140,19 +127,17 @@ class Container extends React.Component {
   };
 
   // 이미지들 가져오기
-  _getDatas = async imageRoom => {
+  _getRecordData = async imageRoom => {
     //userNo 가지고 오기
     const {navigation} = this.props;
-    var clubName = navigation.getParam('clubName', 'NO-ID');
-    var school = navigation.getParam('school', 'NO-ID');
+    var clubNo = navigation.getParam('clubNo', 'NO-ID');
     const t = this;
 
     // 데이터 가져오기
     await axios
       .post('http://13.209.221.206/php/Main/GetImages2.php', {
-        clubName: clubName,
-        school: school,
-        imageRoom: imageRoom,
+        clubNo,
+        imageRoom,
       })
       .then(async result => {
         const response = result.data;

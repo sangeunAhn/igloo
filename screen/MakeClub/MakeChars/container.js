@@ -1,18 +1,14 @@
 import React from 'react';
-import {AsyncStorage, BackHandler} from 'react-native';
+import {AsyncStorage} from 'react-native';
 import * as axios from 'axios';
 import MakeChars from './presenter';
 
 class Container extends React.Component {
   static navigationOptions = {
-    headerLeft: null,
-    gesturesEnabled: false,
     header: null,
   };
-
   constructor(props) {
     super(props);
-    this._handleBackButtonClick = this._handleBackButtonClick.bind(this);
     this.state = {
       clubChars: {},
       chars: {},
@@ -42,11 +38,6 @@ class Container extends React.Component {
   }
 
   UNSAFE_componentWillMount = () => {
-    BackHandler.addEventListener(
-      'hardwareBackPress',
-      this._handleBackButtonClick,
-    );
-
     this._getChars();
 
     this.setState({
@@ -54,13 +45,6 @@ class Container extends React.Component {
       chars: [],
     });
   };
-
-  UNSAFE_componentWillUnmount() {
-    BackHandler.removeEventListener(
-      'hardwareBackPress',
-      this._handleBackButtonClick,
-    );
-  }
 
   _getChars = () => {
     //userNo 가지고 오기
@@ -216,11 +200,6 @@ class Container extends React.Component {
     await Promise.all(
       Object.values(chars).map(char => t._inputDatas(char.id, char.char)),
     );
-  };
-
-  _handleBackButtonClick = () => {
-    this.props.navigation.goBack();
-    return true;
   };
 }
 

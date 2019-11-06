@@ -16,6 +16,15 @@ const {width, height} = Dimensions.get('window');
 
 const MakeClub = props => (
   <>
+    <TouchableOpacity
+      style={styles.backBtn}
+      onPress={() => {
+        props.navigation.goBack();
+      }}>
+      <SafeAreaView>
+        <Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
+      </SafeAreaView>
+    </TouchableOpacity>
     {props.isGetting == false &&
     props.navigation.getParam('from', 'NO-ID') == 'm' ? (
       <ActivityIndicator size="large" style={styles.activityIndicator} />
@@ -24,24 +33,9 @@ const MakeClub = props => (
         {Platform.OS === 'android' ? (
           <MakeClub2 {...props} />
         ) : (
-          <>
-            <TouchableOpacity
-              style={styles.backBtn}
-              onPress={() => {
-                props.navigation.goBack();
-              }}>
-              <SafeAreaView>
-                <Ionicons
-                  name="ios-arrow-back"
-                  size={width * 0.08}
-                  color="black"
-                />
-              </SafeAreaView>
-            </TouchableOpacity>
-            <KeyboardAvoidingView style={{flex: 1}} behavior="padding" enabled>
-              <MakeClub2 {...props} />
-            </KeyboardAvoidingView>
-          </>
+          <KeyboardAvoidingView style={{flex: 1}} behavior="padding" enabled>
+            <MakeClub2 {...props} />
+          </KeyboardAvoidingView>
         )}
       </View>
     )}

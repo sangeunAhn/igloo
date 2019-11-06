@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {BackHandler} from 'react-native';
 import * as axios from 'axios';
 import ClubRecordPictures from './presenter';
 
@@ -25,18 +24,7 @@ class Container extends React.Component {
 
   UNSAFE_componentWillMount = () => {
     this._getDatas();
-    BackHandler.addEventListener(
-      'hardwareBackPress',
-      this._handleBackButtonClick,
-    );
   };
-
-  UNSAFE_componentWillUnmount() {
-    BackHandler.removeEventListener(
-      'hardwareBackPress',
-      this._handleBackButtonClick,
-    );
-  }
 
   _getDatas = async () => {
     //userNo 가지고 오기

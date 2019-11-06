@@ -14,8 +14,9 @@ import UpdateClub from './screen/MakeClub/UpdateClub';
 import Record from './screen/Main/ClubRecord';
 import Login from './screen/Login/Login';
 import SignUp from './screen/Login/SignUp';
+import RegisterSchool from './screen/Login/RegisterSchool';
 import SignUpPermission from './screen/Login/SignUpPermission';
-import * as MagicMove from 'react-native-magic-move';
+import {MenuProvider} from 'react-native-popup-menu';
 
 const RootStack = createStackNavigator(
   {
@@ -61,6 +62,9 @@ const RootStack = createStackNavigator(
     SignUpPermission: {
       screen: SignUpPermission,
     },
+    RegisterSchool: {
+      screen: RegisterSchool,
+    },
   },
   {
     initialRouteName: 'Login',
@@ -71,9 +75,10 @@ const AppContainer = createAppContainer(RootStack);
 
 export default class App extends React.Component {
   render() {
+    console.disableYellowBox = true;
     return (
       <>
-        <MagicMove.Provider>
+        <MenuProvider>
           <AppContainer />
           <StatusBar
             barStyle="dark-content"
@@ -86,7 +91,7 @@ export default class App extends React.Component {
             //allowing light, but not detailed shapes
             networkActivityIndicatorVisible={true}
           />
-        </MagicMove.Provider>
+        </MenuProvider>
       </>
     );
   }

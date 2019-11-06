@@ -5,6 +5,7 @@ import {
   Image,
   YellowBox,
   TouchableOpacity,
+  AsyncStorage,
 } from 'react-native';
 import * as axios from 'axios';
 import KakaoLogins from '@react-native-seoul/kakao-login';
@@ -69,6 +70,7 @@ export default function App(props) {
           setProfileLoading(false),
         );
         _existId(result.id);
+        _storeData(result.id);
       })
       .catch(err => {
         logCallback(
@@ -76,6 +78,14 @@ export default function App(props) {
           setProfileLoading(false),
         );
       });
+  };
+
+  const _storeData = async id => {
+    try {
+      await AsyncStorage.setItem('userId', 'kakao' + id);
+    } catch (error) {
+      console.log('스토리지에 ID 저장 안됨.');
+    }
   };
 
   const _makeUser = async id => {
@@ -91,7 +101,7 @@ export default function App(props) {
       },
     });
 
-    props.navigation.navigate('Schools', {
+    props.navigation.navigate('RegisterSchool', {
       userId: id,
     });
   };

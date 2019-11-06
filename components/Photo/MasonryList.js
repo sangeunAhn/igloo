@@ -9,7 +9,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import FastImage from 'react-native-fast-image';
-import * as MagicMove from 'react-native-magic-move';
 
 const {width, height} = Dimensions.get('window');
 
@@ -31,62 +30,60 @@ export default class MasonryList extends React.Component {
   render() {
     return (
       <>
-        <MagicMove.Scene>
-          <MagicMove.View id="logo" style={styles.container}>
-            {this.state.recordsLoading ? (
-              <View style={styles.loading}>
-                <ActivityIndicator size="large" />
-              </View>
-            ) : (
-              <></>
-            )}
-            <View style={styles.leftView}>
-              {Object.values(this.props.leftRecords).map((record, index) => (
-                <TouchableOpacity
-                  key={index}
-                  onPress={() =>
-                    this.props.from == 'update'
-                      ? this.props.RecordRegister(record.uri)
-                      : this.props.goToPictures(record.uri)
-                  }>
-                  <FastImage
-                    key={index}
-                    style={[
-                      styles.record,
-                      {
-                        height: record.height,
-                      },
-                    ]}
-                    source={{uri: record.uri}}
-                    onLoad={this._onLoad()}
-                  />
-                </TouchableOpacity>
-              ))}
+        <View id="logo" style={styles.container}>
+          {this.state.recordsLoading ? (
+            <View style={styles.loading}>
+              <ActivityIndicator size="large" />
             </View>
-            <View style={styles.rightView}>
-              {Object.values(this.props.rightRecords).map((record, index) => (
-                <TouchableOpacity
+          ) : (
+            <></>
+          )}
+          <View style={styles.leftView}>
+            {Object.values(this.props.leftRecords).map((record, index) => (
+              <TouchableOpacity
+                key={index}
+                onPress={() =>
+                  this.props.from == 'update'
+                    ? this.props.RecordRegister(record.uri)
+                    : this.props.goToPictures(record.uri)
+                }>
+                <FastImage
                   key={index}
-                  onPress={() =>
-                    this.props.from === 'update'
-                      ? this.props.RecordRegister(record.uri)
-                      : this.props.goToPictures(record.uri)
-                  }>
-                  <FastImage
-                    key={index}
-                    style={[
-                      styles.record,
-                      {
-                        height: record.height,
-                      },
-                    ]}
-                    source={{uri: record.uri}}
-                  />
-                </TouchableOpacity>
-              ))}
-            </View>
-          </MagicMove.View>
-        </MagicMove.Scene>
+                  style={[
+                    styles.record,
+                    {
+                      height: record.height,
+                    },
+                  ]}
+                  source={{uri: record.uri}}
+                  onLoad={this._onLoad()}
+                />
+              </TouchableOpacity>
+            ))}
+          </View>
+          <View style={styles.rightView}>
+            {Object.values(this.props.rightRecords).map((record, index) => (
+              <TouchableOpacity
+                key={index}
+                onPress={() =>
+                  this.props.from === 'update'
+                    ? this.props.RecordRegister(record.uri)
+                    : this.props.goToPictures(record.uri)
+                }>
+                <FastImage
+                  key={index}
+                  style={[
+                    styles.record,
+                    {
+                      height: record.height,
+                    },
+                  ]}
+                  source={{uri: record.uri}}
+                />
+              </TouchableOpacity>
+            ))}
+          </View>
+        </View>
       </>
     );
   }

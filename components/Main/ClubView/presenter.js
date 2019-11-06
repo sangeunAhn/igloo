@@ -64,7 +64,7 @@ const ClubView = props => (
             />
           )}
 
-          <Body>
+          <Body style={{flexWrap:'nowrap'}}>
             <Text style={{fontSize: 20}}>{props.clubName}</Text>
             <Text note>
               {' '}

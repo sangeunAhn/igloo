@@ -5,7 +5,6 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   View,
-  BackHandler,
   TouchableOpacity,
   Platform,
   SafeAreaView,

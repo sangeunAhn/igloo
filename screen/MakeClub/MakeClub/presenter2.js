@@ -22,109 +22,24 @@ const {width, height} = Dimensions.get('window');
 
 const MakeClub2 = props => (
   <HeaderScrollView
-    headerContainerStyle={{
-      justifyContent: 'center',
-      alignItems: 'center',
-      ...ifIphoneX({paddingTop: 18}, {paddingTop: 0}),
-      height: Platform.OS === 'ios' ? height * 0.1 : height * 0.08,
-    }}
-    headlineStyle={{
-      height: height * 0.1,
-      textAlign: 'center',
-      justifyContent: 'center',
-      alignItems: 'center',
-      alignSelf: 'center',
-      fontSize: width * 0.05,
-      paddingTop: Platform.OS === 'ios' ? height * 0.055 : height * 0.048,
-    }}
-    headerComponentContainerStyle={{
-      justifyContent: 'center',
-      alignItems: 'center',
-      height: height * 0.08,
-    }}
-    titleStyle={{
-      // paddingTop: Platform.OS === 'ios' ? 15 : 0,
-      color: '#3B3B3B',
-      fontSize: width * 0.09,
-    }}
+    headerContainerStyle={styles.headerContainerStyle}
+    headlineStyle={styles.headlineStyle}
+    headerComponentContainerStyle={styles.headerComponentContainerStyle}
+    titleStyle={styles.titleStyle}
     fadeDirection="up"
     title="소개 입력">
     <View style={styles.blank} />
-    <View
-      style={{
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
-      <View
-        style={{
-          justifyContent: 'center',
-          alignItems: 'center',
-          width: width * 0.07,
-          height: width * 0.07,
-          borderRadius: width * 0.07 * 0.5,
-          backgroundColor: '#7B99B6',
-        }}>
-        <Text
-          style={{
-            fontWeight: 'bold',
-            textAlign: 'center',
-            color: 'white',
-          }}>
-          1
-        </Text>
+    <View style={styles.makeCount}>
+      <View style={styles.countView}>
+        <Text style={styles.countText}>1</Text>
       </View>
-      <View
-        style={{
-          backgroundColor: '#BBBBBB',
-          height: 1,
-          width: width * 0.25,
-          marginHorizontal: 7,
-        }}
-      />
-      <View
-        style={{
-          justifyContent: 'center',
-          alignItems: 'center',
-          width: width * 0.07,
-          height: width * 0.07,
-          borderRadius: width * 0.07 * 0.5,
-          backgroundColor: '#8D8D8D',
-        }}>
-        <Text
-          style={{
-            fontWeight: 'bold',
-            textAlign: 'center',
-            color: 'white',
-          }}>
-          2
-        </Text>
+      <View style={styles.countLine} />
+      <View style={styles.countView}>
+        <Text style={styles.countText}>2</Text>
       </View>
-      <View
-        style={{
-          backgroundColor: '#BBBBBB',
-          height: 1,
-          width: width * 0.25,
-          marginHorizontal: 7,
-        }}
-      />
-      <View
-        style={{
-          justifyContent: 'center',
-          alignItems: 'center',
-          width: width * 0.07,
-          height: width * 0.07,
-          borderRadius: width * 0.07 * 0.5,
-          backgroundColor: '#8D8D8D',
-        }}>
-        <Text
-          style={{
-            fontWeight: 'bold',
-            textAlign: 'center',
-            color: 'white',
-          }}>
-          3
-        </Text>
+      <View style={styles.countLine} />
+      <View style={styles.countView}>
+        <Text style={styles.countText}>3</Text>
       </View>
     </View>
     <View style={styles.blank} />
@@ -144,8 +59,8 @@ const MakeClub2 = props => (
           <ActivityIndicator size="large" />
         </View>
       ) : props.clubMainPicture_high == null ||
-        props.clubMainPicture_high == 'ul' ||
-        props.clubMainPicture_high == '' ? (
+        props.clubMainPicture_high === 'ul' ||
+        props.clubMainPicture_high === '' ? (
         <View style={styles.MainPictureImage} />
       ) : (
         props.clubMainPicture_high && (
@@ -169,8 +84,8 @@ const MakeClub2 = props => (
             <ActivityIndicator size="large" />
           </View>
         ) : props.clubLogo_high == null ||
-          props.clubLogo_high == 'ul' ||
-          props.clubLogo_high == '' ? (
+          props.clubLogo_high === 'ul' ||
+          props.clubLogo_high === '' ? (
           <View style={styles.logoImage} />
         ) : (
           props.clubLogo_high && (
@@ -196,7 +111,7 @@ const MakeClub2 = props => (
         </Text>
         <TextInput
           onFocus={props.handleFocus}
-          onBlur={props.clubName.length == 0 ? props.handleBlur : null}
+          onBlur={props.clubName.length === 0 ? props.handleBlur : null}
           style={[
             styles.input,
             {
@@ -230,21 +145,8 @@ const MakeClub2 = props => (
 
       <View style={styles.blank} />
       <Text style={styles.text}>모임(동아리) 성격</Text>
-      <View
-        style={{
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexDirection: 'row',
-        }}>
-        <Text
-          style={{
-            color: '#003964',
-            width: width * 0.2,
-            textAlign: 'center',
-            fontSize: width * 0.035,
-          }}>
-          소규모
-        </Text>
+      <View style={styles.charView}>
+        <Text style={styles.charLeftText}>소규모</Text>
         <Slider
           value={props.clubSize}
           onValueChange={props.clubSizeChange}
@@ -255,31 +157,10 @@ const MakeClub2 = props => (
           thumbStyle={{width: 15, height: 15, borderRadius: 3}}
           trackStyle={{height: 2}}
         />
-        <Text
-          style={{
-            color: '#580000',
-            width: width * 0.2,
-            textAlign: 'center',
-            fontSize: width * 0.035,
-          }}>
-          대규모
-        </Text>
+        <Text style={styles.charRightText}>대규모</Text>
       </View>
-      <View
-        style={{
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexDirection: 'row',
-        }}>
-        <Text
-          style={{
-            color: '#003964',
-            width: width * 0.2,
-            textAlign: 'center',
-            fontSize: width * 0.035,
-          }}>
-          자율적인
-        </Text>
+      <View style={styles.charView}>
+        <Text style={styles.charLeftText}>자율적인</Text>
         <Slider
           value={props.clubAutonomous}
           onValueChange={props.clubAutonomousChange}
@@ -290,31 +171,10 @@ const MakeClub2 = props => (
           thumbStyle={{width: 15, height: 15, borderRadius: 3}}
           trackStyle={{height: 2}}
         />
-        <Text
-          style={{
-            color: '#580000',
-            width: width * 0.2,
-            textAlign: 'center',
-            fontSize: width * 0.035,
-          }}>
-          체계적인
-        </Text>
+        <Text style={styles.charRightText}>체계적인</Text>
       </View>
-      <View
-        style={{
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexDirection: 'row',
-        }}>
-        <Text
-          style={{
-            color: '#003964',
-            width: width * 0.2,
-            textAlign: 'center',
-            fontSize: width * 0.035,
-          }}>
-          재미있는
-        </Text>
+      <View style={styles.charView}>
+        <Text style={styles.charLeftText}>재미있는</Text>
         <Slider
           value={props.clubFunny}
           onValueChange={props.clubFunnyChange}
@@ -325,31 +185,10 @@ const MakeClub2 = props => (
           thumbStyle={{width: 15, height: 15, borderRadius: 3}}
           trackStyle={{height: 2}}
         />
-        <Text
-          style={{
-            color: '#580000',
-            width: width * 0.2,
-            textAlign: 'center',
-            fontSize: width * 0.035,
-          }}>
-          진지한
-        </Text>
+        <Text style={styles.charRightText}>진지한</Text>
       </View>
-      <View
-        style={{
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexDirection: 'row',
-        }}>
-        <Text
-          style={{
-            color: '#003964',
-            width: width * 0.2,
-            textAlign: 'center',
-            fontSize: width * 0.035,
-          }}>
-          친목도모
-        </Text>
+      <View style={styles.charView}>
+        <Text style={styles.charLeftText}>친목도모</Text>
         <Slider
           value={props.clubFriendship}
           onValueChange={props.clubFriendshipChange}
@@ -360,15 +199,7 @@ const MakeClub2 = props => (
           thumbStyle={{width: 15, height: 15, borderRadius: 3}}
           trackStyle={{height: 2}}
         />
-        <Text
-          style={{
-            color: '#580000',
-            width: width * 0.2,
-            textAlign: 'center',
-            fontSize: width * 0.035,
-          }}>
-          활동중심
-        </Text>
+        <Text style={styles.charRightText}>활동중심</Text>
       </View>
 
       <View style={styles.block} />
@@ -580,6 +411,72 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: height * 0.112,
+  },
+  headerContainerStyle: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    ...ifIphoneX({paddingTop: 18}, {paddingTop: 0}),
+    height: Platform.OS === 'ios' ? height * 0.1 : height * 0.08,
+  },
+  headlineStyle: {
+    height: height * 0.1,
+    textAlign: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    fontSize: width * 0.05,
+    paddingTop: Platform.OS === 'ios' ? height * 0.055 : height * 0.048,
+  },
+  headerComponentContainerStyle: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: height * 0.08,
+  },
+  titleStyle: {
+    // paddingTop: Platform.OS === 'ios' ? 15 : 0,
+    color: '#3B3B3B',
+    fontSize: width * 0.09,
+  },
+  makeCount: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  countView: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: width * 0.07,
+    height: width * 0.07,
+    borderRadius: width * 0.07 * 0.5,
+    backgroundColor: '#7B99B6',
+  },
+  countText: {
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: 'white',
+  },
+  countLine: {
+    backgroundColor: '#BBBBBB',
+    height: 1,
+    width: width * 0.25,
+    marginHorizontal: 7,
+  },
+  charView: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+  },
+  charLeftText: {
+    color: '#003964',
+    width: width * 0.2,
+    textAlign: 'center',
+    fontSize: width * 0.035,
+  },
+  charRightText: {
+    color: '#580000',
+    width: width * 0.2,
+    textAlign: 'center',
+    fontSize: width * 0.035,
   },
 });
 

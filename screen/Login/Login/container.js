@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Alert, Animated} from 'react-native';
 import * as axios from 'axios';
 import Login from './presenter';
+import {AsyncStorage} from 'react-native';
 
 class Container extends React.Component {
   static navigationOptions = ({navigation, screenProps}) => ({
@@ -19,6 +20,7 @@ class Container extends React.Component {
   }
   componentDidMount() {
     this._moveX();
+    this._retrieveData();
   }
 
   render() {
@@ -36,6 +38,20 @@ class Container extends React.Component {
       />
     );
   }
+
+  _retrieveData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('userId');
+      if (value !== null) {
+        console.log('스토리지에 있는 데이터 =', value);
+        this.props.navigation.navigate('Schools', {
+          userId: value,
+        });
+      }
+    } catch (error) {
+      console.log('스토리지에 데이터가 없습니다.');
+    }
+  };
 
   _moveX = () => {
     Animated.decay(this.state.position, {
@@ -132,22 +148,6 @@ class Container extends React.Component {
     } else {
       this._getIdPw();
     }
-  };
-
-  _idPwFind = () => {
-    this.props.navigation.navigate('FindIdPw');
-  };
-
-  _signUp = () => {
-    this.props.navigation.navigate('SignUpPermission');
-  };
-
-  _idChange = id => {
-    this.setState({id});
-  };
-
-  _pwChange = password => {
-    this.setState({password});
   };
 }
 

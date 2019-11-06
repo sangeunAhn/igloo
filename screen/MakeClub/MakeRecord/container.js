@@ -1,5 +1,5 @@
 import React from 'react';
-import {BackHandler, Image, Dimensions} from 'react-native';
+import {Image, Dimensions} from 'react-native';
 import * as axios from 'axios';
 import MakeRecord from './presenter';
 
@@ -49,20 +49,6 @@ class Container extends React.Component {
         btnPress={this._btnPress}
         iconPress={this._iconPress}
       />
-    );
-  }
-
-  UNSAFE_componentWillMount = () => {
-    BackHandler.addEventListener(
-      'hardwareBackPress',
-      this._handleBackButtonClick,
-    );
-  };
-
-  UNSAFE_componentWillUnmount() {
-    BackHandler.removeEventListener(
-      'hardwareBackPress',
-      this._handleBackButtonClick,
     );
   }
 
@@ -194,11 +180,7 @@ class Container extends React.Component {
   };
 
   _btnPress = () => {
-    if (this.props.navigation.getParam('from', 'NO-ID') === 'm') {
-      this.props.navigation.goBack();
-    } else {
-      this._goToMain();
-    }
+    this._goToMain();
   };
 
   _iconPress = () => {
