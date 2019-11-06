@@ -7,7 +7,7 @@ export default class ClubChars extends React.Component {
     super(props);
   }
   render() {
-    return <Text style={styles.text}>#{this.props.chars} </Text>;
+    return <Text style={[styles.text, {fontSize: this.props.fontSize}]}>#{this.props.chars} </Text>;
   }
 }
 

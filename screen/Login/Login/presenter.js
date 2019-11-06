@@ -15,15 +15,15 @@ const {width, height} = Dimensions.get('window');
 const Login = props => (
   <>
     <ImageBackground
-      imageStyle={{opacity: 0.5}}
-      style={{backgroundColor: 'black', flex: 1, alignSelf: 'stretch'}}
-      source={require('../../../images/back.jpg')}>
+      imageStyle={{opacity: 0.9}}
+      style={{backgroundColor: 'gray', flex: 1, alignSelf: 'stretch'}}
+      source={require('../../../images/bg.jpg')}>
       <View style={styles.container}>
         <Animatable.Text
           animation="fadeInUp"
-          duration={4000}
+          duration={3000}
           useNativeDriver={true}
-          style={{color: 'white', fontSize: width * 0.1}}>
+          style={{lineHeight: 55, color: 'white', fontSize: width * 0.1}}>
           대학교 모임이 {'\n'}궁금할땐?
         </Animatable.Text>
 
@@ -52,9 +52,9 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
+    paddingVertical: 120,
   },
   container2: {
     paddingHorizontal: '7%',

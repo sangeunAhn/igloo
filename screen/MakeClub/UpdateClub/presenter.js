@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   screenTitle: {
     marginTop: Platform.OS === 'ios' ? height * 0.1 : height * 0.07,
     marginLeft: width * 0.05,
-    fontSize: width * 0.09,
+    fontSize: width * 0.075,
     fontWeight: '700',
     backgroundColor: '#FAFAFA',
     position: 'absolute',

@@ -74,7 +74,7 @@ const ClubIntroduce = props => (
                 <Text note style={{top: -30}}>
                   {' '}
                   {props.clubChar.map((char, i) => {
-                    return <ClubChars chars={char} key={i} />;
+                    return <ClubChars fontSize={14} chars={char} key={i} />;
                   })}
                 </Text>
               </View>
@@ -219,7 +219,7 @@ const ClubIntroduce = props => (
             <View style={styles.sliderLine} />
           </View>
         </View>
-        <View style={styles.container}>
+        <View style={{flex: 1}}>
           <TouchableOpacity
             style={styles.backBtn}
             onPress={() => {
@@ -233,12 +233,45 @@ const ClubIntroduce = props => (
               />
             </SafeAreaView>
           </TouchableOpacity>
-          <ScrollView style={styles.introBox} nestedScrollEnabled={true}>
+
+          <View>
+            <SafeAreaView>
+              <Text
+                style={{
+                  fontSize: width * 0.05,
+                  fontWeight: 'bold',
+                  marginTop: 50,
+                  marginLeft: 15,
+                }}>
+                모임 소개
+              </Text>
+            </SafeAreaView>
+          </View>
+          <View style={styles.intro}>
+            <ScrollView style={styles.introBox} nestedScrollEnabled={true}>
+              <Text style={{paddingVertical: 15, paddingHorizontal: 10}}>
+                {props.clubIntroduce}
+              </Text>
+            </ScrollView>
+          </View>
+          <Text
+            style={{
+              fontSize: width * 0.05,
+              fontWeight: 'bold',
+              marginTop: 30,
+              marginLeft: 15,
+              top: -30,
+            }}>
+            {' '}
+            연락처{' '}
+          </Text>
+          <View style={styles.phone}>
             <Text style={{paddingVertical: 15, paddingHorizontal: 10}}>
-              {props.clubIntroduce}
+              {props.clubPhoneNumber}
             </Text>
-          </ScrollView>
+          </View>
         </View>
+
         <>
           {props.recordIsGetting ? (
             <View style={styles.container}>
@@ -283,7 +316,8 @@ const ClubIntroduce = props => (
                   titleStyle={{
                     // paddingTop: Platform.OS === 'ios' ? 15 : 0,
                     color: '#3B3B3B',
-                    fontSize: width * 0.09,
+                    fontSize: width * 0.075,
+                    marginBottom: 10,
                   }}
                   fadeDirection="up"
                   scrollViewProps={{showsVerticalScrollIndicator: false}}
@@ -444,17 +478,42 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  intro: {
+    flex: 12,
+    shadowColor: '#E1E1E1',
+    shadowOffset: {height: 1.5, width: 0},
+    shadowOpacity: 5,
+    shadowRadius: 3,
+    elevation: 1.5,
+  },
   introBox: {
     borderRadius: 5,
     backgroundColor: 'white',
-    top: 10,
-    marginVertical: width * 0.13,
+    top: 0,
+    marginBottom: width * 0.05,
+    marginTop: width * 0.04,
     marginHorizontal: width * 0.07,
     shadowColor: '#E1E1E1',
     shadowOffset: {height: 1.5, width: 0},
     shadowOpacity: 5,
     shadowRadius: 3,
     elevation: 1.5,
+  },
+  phone: {
+    flex: 1,
+    top: -30,
+    borderRadius: 5,
+    backgroundColor: 'white',
+    marginBottom: width * 0.13,
+    marginTop: width * 0.04,
+    marginHorizontal: width * 0.07,
+    shadowColor: '#E1E1E1',
+    shadowOffset: {height: 1.5, width: 0},
+    shadowOpacity: 5,
+    shadowRadius: 3,
+    elevation: 1.5,
+    width: '85%',
+    height: 40,
   },
 });
 

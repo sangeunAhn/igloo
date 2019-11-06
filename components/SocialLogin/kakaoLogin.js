@@ -128,21 +128,19 @@ export default function App(props) {
   return (
     <TouchableOpacity
       style={{
+        borderRadius: 5,
         flexDirection: 'row',
         alignItems: 'center',
         marginTop: 30,
         backgroundColor: '#F7E314',
-        width: width * 0.55,
-        height: height * 0.06,
+        width: 220,
+        height: 30,
       }}
       onPress={kakaoLogin}>
       <Image
-        style={{width: width * 0.1, height: height * 0.04}}
+        style={{width: 220, borderRadius: 3, height: 30}}
         source={require('../../images/kakao.png')}
       />
-      <Text style={{color: '#3C1E1E', fontWeight: 'bold'}}>
-        카카오톡으로 로그인
-      </Text>
     </TouchableOpacity>
   );
 }

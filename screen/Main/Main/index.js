@@ -124,6 +124,7 @@ export default class Main extends Component {
     const t = this;
     const schoolName = navigation.getParam('schoolName', 'NO-ID');
     const userSchool = navigation.getParam('userSchool', 'NO-ID');
+    console.log(schoolName, userSchool);
     return (
       <View style={styles.container}>
         <TouchableOpacity
