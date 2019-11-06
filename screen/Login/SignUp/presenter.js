@@ -65,6 +65,7 @@ const SignUp = props => (
             fontSize: width * 0.09,
           }}
           fadeDirection="up"
+          scrollViewProps={{showsVerticalScrollIndicator: false}}
           title="회원가입">
           <View style={styles.blank} />
 

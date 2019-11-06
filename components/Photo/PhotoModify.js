@@ -162,7 +162,7 @@ export default class PhotoModify extends React.Component {
           this.props.changeUpdateLoading(id);
         } else {
           this.setState({image: response.uri, disabled: true});
-          updateImage(id, response.uri);
+          await updateImage(id, response.uri);
           this.props.changeUpdateLoading(id);
         }
       });

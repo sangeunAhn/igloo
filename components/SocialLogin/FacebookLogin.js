@@ -72,7 +72,8 @@ export default class MasonryList extends React.Component {
     return (
       <ImageBackground style={{zIndex:1, width:200, height:20}}source={require('../../images/facebook.png')}>
       <LoginButton
-      source={require('../../images/facebook.png')}
+      
+      style={{alignSelf:'center',textAlign: 'center',width:220, height:30,}}
         onLoginFinished={(error, result) => {
           if (error) {
             console.log('login has error: ' + result.error);

@@ -73,6 +73,7 @@ const MakeRecord = props => (
               fontSize: width * 0.09,
             }}
             fadeDirection="up"
+            scrollViewProps={{showsVerticalScrollIndicator: false}}
             title="기록 생성">
             <View
               style={{

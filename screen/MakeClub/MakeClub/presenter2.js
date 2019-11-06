@@ -27,6 +27,7 @@ const MakeClub2 = props => (
     headerComponentContainerStyle={styles.headerComponentContainerStyle}
     titleStyle={styles.titleStyle}
     fadeDirection="up"
+    scrollViewProps={{showsVerticalScrollIndicator: false}}
     title="소개 입력">
     <View style={styles.blank} />
     <View style={styles.makeCount}>

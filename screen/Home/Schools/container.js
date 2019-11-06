@@ -5,7 +5,7 @@ import { ToastAndroid, BackHandler } from 'react-native';
 
 class Container extends React.Component {
   static navigationOptions = {
-    gesturesEnabled: false,
+    // gesturesEnabled: false,
     header: null,
   };
 
@@ -20,6 +20,7 @@ class Container extends React.Component {
   // UNSAFE_componentWillMount = () => {
   //   this._getUserData();
   // };
+
 
   // componentDidMount() {
   //   BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
@@ -59,7 +60,6 @@ class Container extends React.Component {
         {...this.props}
         AAPress={this._AAPress}
         BBPress={this._BBPress}
-        CCPress={this._CCPress}
         onSwipeRight={this._onSwipeRight}
       />
     );
