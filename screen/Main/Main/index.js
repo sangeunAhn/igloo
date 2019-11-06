@@ -37,6 +37,7 @@ export default class Main extends Component {
     super(props);
     this.state = {
       kindsOrder: [],
+      collapseArray: [true, true, true, true],
     };
   }
 
@@ -96,8 +97,8 @@ export default class Main extends Component {
 
   render() {
     const {navigation} = this.props;
-    const {kindsOrder} = this.state;
-    const collapseArray = [true, true, true, true];
+    const {kindsOrder, collapseArray} = this.state;
+    const t = this;
     const schoolName = navigation.getParam('schoolName', 'NO-ID');
     const userSchool = navigation.getParam('userSchool', 'NO-ID');
     return (
@@ -137,7 +138,7 @@ export default class Main extends Component {
             }}>
             <MenuOption
               value={1}
-              onSelect={() => this.props.navigation.navigate('Login')}
+              onSelect={this._ExistClub}
               text="동아리 생성"
             />
           </MenuOptions>
@@ -148,13 +149,14 @@ export default class Main extends Component {
           headerComponentContainerStyle={styles.headerComponentContainerStyle}
           titleStyle={styles.titleStyle}
           fadeDirection="up"
+          scrollViewProps={{showsVerticalScrollIndicator: false}}
           title="동아리 찾기">
           {kindsOrder.map((kinds, i) => {
             return (
               <Collapse
                 isCollapsed={collapseArray[i]}
                 onToggle={isCollapsed =>
-                  collapseArray.splice(i, 1, isCollapsed)
+                  this.setState(collapseArray.splice(i, 1, isCollapsed))
                 }>
                 <CollapseHeader>
                   <View style={{paddingHorizontal: width * 0.03}}>
@@ -163,8 +165,8 @@ export default class Main extends Component {
                         flexDirection: 'row',
                         justifyContent: 'space-between',
                       }}>
-                      <Text style={styles.menuTitle}>동아리 연합</Text>
-                      {this.state.collapsed1 == true ? (
+                      <Text style={styles.menuTitle}>{kinds}</Text>
+                      {collapseArray[i] === true ? (
                         <Ionicons
                           style={{alignSelf: 'flex-end', marginBottom: -5}}
                           name="ios-arrow-up"
@@ -199,25 +201,15 @@ export default class Main extends Component {
                 </CollapseBody>
               </Collapse>
             );
-            // console.log(kinds);
           })}
-          {/* <ClubDiv clubKind={'예술 공연'} school={schoolName} {...this.props} />
-          <ClubDiv clubKind={'예술 교양'} school={schoolName} {...this.props} />
-          <ClubDiv clubKind={'체육 구기'} school={schoolName} {...this.props} />
-          <ClubDiv clubKind={'체육 생활'} school={schoolName} {...this.props} />
-          <ClubDiv clubKind={'봉사'} school={schoolName} {...this.props} />
-          <ClubDiv clubKind={'국제'} school={schoolName} {...this.props} />
-          <ClubDiv clubKind={'종교'} school={schoolName} {...this.props} />
-          <ClubDiv clubKind={'학술'} school={schoolName} {...this.props} />
-          <ClubDiv clubKind={'기타'} school={schoolName} {...this.props} /> */}
         </HeaderScrollView>
-        {schoolName === userSchool ? (
+        {/* {schoolName === userSchool ? (
           <TouchableOpacity style={styles.addButton} onPress={this._ExistClub}>
             <Text style={styles.plusText}>+</Text>
           </TouchableOpacity>
         ) : (
           <></>
-        )}
+        )} */}
       </View>
     );
   }

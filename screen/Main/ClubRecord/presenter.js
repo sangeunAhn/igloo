@@ -59,6 +59,7 @@ const ClubRecord = props => (
               fontSize: width * 0.09,
             }}
             fadeDirection="up"
+            scrollViewProps={{showsVerticalScrollIndicator: false}}
             title="동아리 기록">
             {/* {props.isGetting ? (
           <MasonryList

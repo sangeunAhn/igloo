@@ -109,6 +109,7 @@ const MakeRecordPictures = props => (
             fontSize: width * 0.09,
           }}
           fadeDirection="up"
+          scrollViewProps={{showsVerticalScrollIndicator: false}}
           title="기록 생성">
           <View style={styles.container}>
             {/* 사진 넣는 곳 */}

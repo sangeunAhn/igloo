@@ -80,9 +80,9 @@ export default function App(props) {
       });
   };
 
-  const _storeData = async id => {
+  const _storeData = id => {
     try {
-      await AsyncStorage.setItem('userId', 'kakao' + id);
+      AsyncStorage.setItem('userId', 'kakao' + id);
     } catch (error) {
       console.log('스토리지에 ID 저장 안됨.');
     }
@@ -90,7 +90,7 @@ export default function App(props) {
 
   const _makeUser = async id => {
     let formData = new FormData();
-    formData.append('id', 'kakao' + id);
+    formData.append('id', id);
 
     // 데이터베이스에 넣기
     await fetch('http://13.209.221.206/php/Login/makeUser.php', {

@@ -2,6 +2,7 @@ import React from 'react';
 import * as axios from 'axios';
 import uuidv1 from 'uuid/v1';
 import MakeRecordPictures from './presenter';
+import ImageResizer from 'react-native-image-resizer';
 
 export default class RecordRegister extends React.Component {
   static navigationOptions = {
@@ -48,8 +49,16 @@ export default class RecordRegister extends React.Component {
     }
   };
 
-  _addImage = image => {
+  _addImage = async image => {
     const t = this;
+    let tmp = await ImageResizer.createResizedImage(
+      image,
+      1500,
+      1500,
+      'JPEG',
+      70,
+    );
+    image = tmp.uri;
     this.setState(prevState => {
       const ID = t.state.idCount.toString();
       const {count, idCount} = this.state;
@@ -115,7 +124,15 @@ export default class RecordRegister extends React.Component {
     });
   };
 
-  _updateImage = (id, image) => {
+  _updateImage = async (id, image) => {
+    let tmp = await ImageResizer.createResizedImage(
+      image,
+      1500,
+      1500,
+      'JPEG',
+      70,
+    );
+    image = tmp.uri;
     this.setState(prevState => {
       const newState = {
         ...prevState,
@@ -236,13 +253,16 @@ export default class RecordRegister extends React.Component {
     formData.append('createdAt', createdAt);
 
     // 데이터베이스에 넣기
-    await fetch('http://13.209.221.206/php/MakeClub/SetRecord_test.php', {
-      method: 'POST',
-      body: formData,
-      header: {
-        'content-type': 'multipart/form-data',
+    await fetch(
+      'http://13.209.221.206/php/MakeClub/SetRecord_front_scaleDown.php',
+      {
+        method: 'POST',
+        body: formData,
+        header: {
+          'content-type': 'multipart/form-data',
+        },
       },
-    }).then(result => console.log(result));
+    ).then(result => console.log(result));
   };
 
   _handleBackButtonClick = () => {

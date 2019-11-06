@@ -64,6 +64,7 @@ const MakeChars = props => (
             fontSize: width * 0.09,
           }}
           fadeDirection="up"
+          scrollViewProps={{showsVerticalScrollIndicator: false}}
           title="특징 입력">
           <View style={{flex: 1}}>
             <View

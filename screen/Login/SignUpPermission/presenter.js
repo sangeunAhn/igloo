@@ -76,6 +76,7 @@ const SignUpPermission = props => (
           fontSize: width * 0.09,
         }}
         fadeDirection="up"
+        scrollViewProps={{showsVerticalScrollIndicator: false}}
         title="약관 및 개인정보처리방침">
         <View style={styles.container}>
           <Text

@@ -56,7 +56,8 @@ const ClubRecordPictures = props => (
             fontSize: width * 0.09,
           }}
           fadeDirection="up"
-          title="기록 사진">
+          title="기록 사진"
+          scrollViewProps={{showsVerticalScrollIndicator: false}}>
           {Object.values(props.getDatas).map(image => (
             <Picture
               key={image.createdAt}

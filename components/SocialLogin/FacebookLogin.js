@@ -44,13 +44,14 @@ export default class MasonryList extends React.Component {
       console.log('Error fetching data: ' + error.toString());
     } else {
       const t = this;
+      this._storeData('fb' + result.id);
       axios
         .post('http://13.209.221.206/php/Login/ExistId.php', {
           id: 'fb' + result.id,
         })
         .then(function(response) {
           var ms = response.data.message;
-          this._storeData('fb' + result.id);
+          console.log(ms);
           {
             ms === 'true'
               ? t._gotoSchool('fb' + result.id)
@@ -60,9 +61,9 @@ export default class MasonryList extends React.Component {
     }
   };
 
-  _storeData = async id => {
+  _storeData = id => {
     try {
-      await AsyncStorage.setItem('userId', id);
+      AsyncStorage.setItem('userId', id);
     } catch (error) {
       console.log('스토리지에 ID 저장 안됨.');
     }
