@@ -35,11 +35,11 @@ const MakeClub2 = props => (
         <Text style={styles.countText}>1</Text>
       </View>
       <View style={styles.countLine} />
-      <View style={styles.countView}>
+      <View style={styles.countView2}>
         <Text style={styles.countText}>2</Text>
       </View>
       <View style={styles.countLine} />
-      <View style={styles.countView}>
+      <View style={styles.countView2}>
         <Text style={styles.countText}>3</Text>
       </View>
     </View>
@@ -450,6 +450,14 @@ const styles = StyleSheet.create({
     height: width * 0.07,
     borderRadius: width * 0.07 * 0.5,
     backgroundColor: '#7B99B6',
+  },
+  countView2: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: width * 0.07,
+    height: width * 0.07,
+    borderRadius: width * 0.07 * 0.5,
+    backgroundColor: '#8D8D8D',
   },
   countText: {
     fontWeight: 'bold',

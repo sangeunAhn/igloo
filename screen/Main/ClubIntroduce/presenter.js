@@ -12,15 +12,15 @@ import {
 } from 'react-native';
 import HeaderScrollView from 'react-native-header-scroll-view';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {ifIphoneX} from 'react-native-iphone-x-helper';
+import { ifIphoneX } from 'react-native-iphone-x-helper';
 import ImageView from 'react-native-image-view';
 import Swiper from 'react-native-swiper';
-import {Slider} from 'react-native-elements';
-import {Thumbnail, Text} from 'native-base';
+import { Slider } from 'react-native-elements';
+import { Thumbnail, Text } from 'native-base';
 import ClubChars from '../../../components/Char/ClubChars';
 import MasonryView from '../../../components/Photo/MasonryList';
 
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 const ClubIntroduce = props => (
   <>
     {/* <ImageView
@@ -45,7 +45,7 @@ const ClubIntroduce = props => (
       isVisible={props.isImageViewVisible}
     /> */}
     {props.isGetting1 && props.isGetting2 ? (
-      <Swiper paginationStyle={{bottom: 10}} loop={false}>
+      <Swiper paginationStyle={{ bottom: 10 }} loop={false}>
         <View style={styles.container}>
 
           <TouchableOpacity
@@ -61,30 +61,48 @@ const ClubIntroduce = props => (
               />
             </SafeAreaView>
           </TouchableOpacity>
-          <View style={styles.mainPicture} onPress={props.imageViewVisible1}>
-            <ImageBackground
-              blurRadius={2}
-              source={{uri: props.clubMainPicture}}
-              style={styles.mainPicture}
-            />
-          </View>
-          <View style={{top: -100}}>
+          {props.clubMainPicture == null ||
+            props.clubMainPicture === 'ul' ||
+            props.clubMainPicture === '' ? (
+              <View style={[styles.mainPicture,{backgroundColor:'#a7bfe8'}]} />
+            ) : (
+              props.clubMainPicture && (
+                <View style={styles.mainPicture} onPress={props.imageViewVisible1}>
+                  <ImageBackground
+                    blurRadius={2}
+                    source={{ uri: props.clubMainPicture }}
+                    style={styles.mainPicture}
+                  />
+                </View>
+              ))}
+
+          <View style={{ top: -100 }}>
             <View style={styles.box}>
               <View style={styles.inBox}>
                 <Text style={styles.clubName}>{props.clubName}</Text>
-                <Text note style={{top: -30}}>
+                <Text note style={{ top: -30 }}>
                   {' '}
                   {props.clubChar.map((char, i) => {
                     return <ClubChars fontSize={14} chars={char} key={i} />;
                   })}
                 </Text>
               </View>
-              <View onPress={props.imageViewVisible2} style={styles.logo}>
-                <Thumbnail
-                  source={{uri: props.clubLogo}}
-                  style={styles.logoImage}
-                />
-              </View>
+              {props.clubLogo == null ||
+                props.clubLogo === 'ul' ||
+                props.clubLogo === '' ? (
+                  <View style={styles.logo}>
+                  <View style={[styles.logoImage,{backgroundColor:'#6190e8'}]} />
+                  </View>
+                ) : (
+                  props.clubLogo && (
+                    <View onPress={props.imageViewVisible2} style={styles.logo}>
+                      <Thumbnail
+                        source={{ uri: props.clubLogo }}
+                        style={styles.logoImage}
+                      />
+                    </View>
+                  ))}
+
             </View>
           </View>
           <View style={styles.slider}>
@@ -93,7 +111,7 @@ const ClubIntroduce = props => (
               <Slider
                 disabled={true}
                 value={props.clubSize}
-                style={{width: width * 0.55}}
+                style={{ width: width * 0.55 }}
                 minimumTrackTintColor="#A9DFE2"
                 maximumTrackTintColor="#D1D5FA"
                 thumbTintColor="white"
@@ -104,7 +122,7 @@ const ClubIntroduce = props => (
                   height: 18,
                   borderRadius: 18 * 0.5,
                 }}
-                trackStyle={{height: 3}}
+                trackStyle={{ height: 3 }}
               />
               <Text
                 style={{
@@ -122,7 +140,7 @@ const ClubIntroduce = props => (
               <Slider
                 disabled={true}
                 value={props.clubAutonomous}
-                style={{width: width * 0.55}}
+                style={{ width: width * 0.55 }}
                 minimumTrackTintColor="#A9DFE2"
                 maximumTrackTintColor="#D1D5FA"
                 thumbTintColor="white"
@@ -133,7 +151,7 @@ const ClubIntroduce = props => (
                   height: 18,
                   borderRadius: 18 * 0.5,
                 }}
-                trackStyle={{height: 3}}
+                trackStyle={{ height: 3 }}
               />
               <Text
                 style={{
@@ -158,7 +176,7 @@ const ClubIntroduce = props => (
               <Slider
                 disabled={true}
                 value={props.clubFunny}
-                style={{width: width * 0.55}}
+                style={{ width: width * 0.55 }}
                 minimumTrackTintColor="#A9DFE2"
                 maximumTrackTintColor="#D1D5FA"
                 thumbTintColor="white"
@@ -169,7 +187,7 @@ const ClubIntroduce = props => (
                   height: 18,
                   borderRadius: 18 * 0.5,
                 }}
-                trackStyle={{height: 3}}
+                trackStyle={{ height: 3 }}
               />
               <Text
                 style={{
@@ -194,7 +212,7 @@ const ClubIntroduce = props => (
               <Slider
                 disabled={true}
                 value={props.clubFriendship}
-                style={{width: width * 0.55}}
+                style={{ width: width * 0.55 }}
                 minimumTrackTintColor="#A9DFE2"
                 maximumTrackTintColor="#D1D5FA"
                 thumbTintColor="white"
@@ -205,7 +223,7 @@ const ClubIntroduce = props => (
                   height: 18,
                   borderRadius: 18 * 0.5,
                 }}
-                trackStyle={{height: 3}}
+                trackStyle={{ height: 3 }}
               />
               <Text
                 style={{
@@ -220,34 +238,34 @@ const ClubIntroduce = props => (
             <View style={styles.sliderLine} />
           </View>
         </View>
-        <View style={{flex: 1}}>
-        <TouchableOpacity
-                style={styles.backBtn}
-                onPress={() => {
-                  props.navigation.goBack();
-                }}>
-                <SafeAreaView>
-                  <Ionicons
-                    name="ios-arrow-back"
-                    size={width * 0.08}
-                    color="black"
-                  />
-                </SafeAreaView>
-              </TouchableOpacity>
+        <View style={{ flex: 1, backgroundColor: '#FAFAFA' }}>
+          <TouchableOpacity
+            style={styles.backBtn}
+            onPress={() => {
+              props.navigation.goBack();
+            }}>
+            <SafeAreaView>
+              <Ionicons
+                name="ios-arrow-back"
+                size={width * 0.08}
+                color="black"
+              />
+            </SafeAreaView>
+          </TouchableOpacity>
           <View >
-            <Text style={{fontSize:width * 0.05, fontWeight:'bold', marginTop:50, marginLeft:15}}>모임 소개</Text>
+            <Text style={{ fontSize: width * 0.05, fontWeight: 'bold', marginTop: 50, marginLeft: 15 }}>모임 소개</Text>
           </View>
 
           <ScrollView style={styles.introBox} nestedScrollEnabled={true}>
-            <Text style={{paddingVertical: 15, paddingHorizontal: 10}}>
+            <Text style={{ paddingVertical: 15, paddingHorizontal: 10 }}>
               {props.clubIntroduce}
             </Text>
           </ScrollView>
-          <Text style={{fontSize:width * 0.05, fontWeight:'bold', marginTop:30, marginLeft:15, top:-30}}> 연락 가능 연락처 </Text>
+          <Text style={{ fontSize: width * 0.05, fontWeight: 'bold', marginTop: 30, marginLeft: 15, top: -30 }}> 연락 가능 연락처 </Text>
           <View style={styles.phone}>
-              <Text style={{paddingVertical: 15, paddingHorizontal: 10}}>
-                {props.clubPhoneNumber}
-              </Text>
+            <Text style={{ paddingVertical: 15, paddingHorizontal: 10 }}>
+              {props.clubPhoneNumber}
+            </Text>
           </View>
         </View>
         <>
@@ -268,11 +286,11 @@ const ClubIntroduce = props => (
               </TouchableOpacity>
               <View style={styles.container}>
                 <HeaderScrollView
-                  containerStyle={{backgroundColor: '#FAFAFA'}}
+                  containerStyle={{ backgroundColor: '#FAFAFA' }}
                   headerContainerStyle={{
                     justifyContent: 'center',
                     alignItems: 'center',
-                    ...ifIphoneX({paddingTop: 18}, {paddingTop: 0}),
+                    ...ifIphoneX({ paddingTop: 18 }, { paddingTop: 0 }),
                     height:
                       Platform.OS === 'ios' ? height * 0.1 : height * 0.08,
                   }}
@@ -295,10 +313,10 @@ const ClubIntroduce = props => (
                     // paddingTop: Platform.OS === 'ios' ? 15 : 0,
                     color: '#3B3B3B',
                     fontSize: width * 0.075,
-                    marginBottom:10
+                    marginBottom: 10
                   }}
                   fadeDirection="up"
-                  scrollViewProps={{showsVerticalScrollIndicator: false}}
+                  scrollViewProps={{ showsVerticalScrollIndicator: false }}
                   title="동아리 기록">
                   {props.imageRoom.length === 0 ? (
                     <>
@@ -309,21 +327,21 @@ const ClubIntroduce = props => (
                       </View>
                     </>
                   ) : (
-                    <MasonryView {...props} />
-                  )}
+                      <MasonryView {...props} />
+                    )}
                 </HeaderScrollView>
               </View>
             </View>
           ) : (
-            <View style={styles.loading}>
-              <ActivityIndicator size="large" />
-            </View>
-          )}
+              <View style={styles.loading}>
+                <ActivityIndicator size="large" />
+              </View>
+            )}
         </>
       </Swiper>
     ) : (
-      <ActivityIndicator size="large" style={styles.activityIndicator} />
-    )}
+        <ActivityIndicator size="large" style={styles.activityIndicator} />
+      )}
   </>
 );
 
@@ -348,7 +366,7 @@ const styles = StyleSheet.create({
   },
   box: {
     shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,
     shadowRadius: 2,
     elevation: 1,
@@ -461,28 +479,28 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     top: 0,
     marginBottom: width * 0.05,
-    marginTop:width*0.04,
+    marginTop: width * 0.04,
     marginHorizontal: width * 0.07,
     shadowColor: '#E1E1E1',
-    shadowOffset: {height: 1.5, width: 0},
+    shadowOffset: { height: 1.5, width: 0 },
     shadowOpacity: 5,
     shadowRadius: 3,
     elevation: 1.5,
   },
-  phone:{
-    top:-30,
+  phone: {
+    top: -30,
     borderRadius: 5,
     backgroundColor: 'white',
     marginBottom: width * 0.13,
-    marginTop:width*0.04,
+    marginTop: width * 0.04,
     marginHorizontal: width * 0.07,
     shadowColor: '#E1E1E1',
-    shadowOffset: {height: 1.5, width: 0},
+    shadowOffset: { height: 1.5, width: 0 },
     shadowOpacity: 5,
     shadowRadius: 3,
     elevation: 1.5,
-    width:'85%',
-    height:40
+    width: '85%',
+    height: 40
   }
 });
 

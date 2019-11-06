@@ -70,7 +70,7 @@ export default class MasonryList extends React.Component {
 
   render() {
     return (
-      <ImageBackground style={{zIndex:1, width:200, height:20}}source={require('../../images/facebook.png')}>
+   
       <LoginButton
       
       style={{alignSelf:'center',textAlign: 'center',width:220, height:30,}}
@@ -102,7 +102,7 @@ export default class MasonryList extends React.Component {
         }}
         onLogoutFinished={() => console.log('logout.')}
       />
-      </ImageBackground>
+     
     );
   }
 }
