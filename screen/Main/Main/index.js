@@ -140,7 +140,7 @@ export default class Main extends Component {
             <MenuOption
               value={1}
               onSelect={this._ExistClub}
-              text="동아리 생성"
+              text="모임 생성"
             />
           </MenuOptions>
         </Menu>

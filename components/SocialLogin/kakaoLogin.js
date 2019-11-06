@@ -128,6 +128,7 @@ export default function App(props) {
   return (
     <TouchableOpacity
       style={{
+        borderRadius:5,
         flexDirection: 'row',
         alignItems: 'center',
         marginTop: 30,
@@ -138,6 +139,7 @@ export default function App(props) {
       onPress={kakaoLogin}>
       <Image
        style={{ width: 220,
+        borderRadius:3,
         height: 30,}}
         source={require('../../images/kakao.png')}
       />
