@@ -175,6 +175,7 @@ class Container extends React.Component {
           schoolName: school,
           userSchool: school,
           userNo,
+          from: 'makeRecord',
         });
       });
   };

@@ -13,7 +13,7 @@ class Container extends Component {
       clubMainPicture: [],
     };
     if (
-      this.props.navigation.getParam('from', 'NO-ID') === 'makeClub' ||
+      this.props.navigation.getParam('from', 'NO-ID') === 'makeRecord' ||
       this.props.navigation.getParam('from', 'NO-ID') === 'updateClub'
     ) {
       this.props.navigation.addListener('didFocus', async () => {

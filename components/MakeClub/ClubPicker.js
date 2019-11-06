@@ -24,14 +24,16 @@ class ClubPicker extends Component {
           mode="dropdown"
           selectedValue={this.state.user}
           onValueChange={this.updateUser}>
-          <Picker.Item label="예술 공연" value="예술 공연" />
-          <Picker.Item label="예술 교양" value="예술 교양" />
-          <Picker.Item label="체육 구기" value="체육 구기" />
-          <Picker.Item label="체육 생활" value="체육 생활" />
-          <Picker.Item label="봉사" value="봉사" />
-          <Picker.Item label="국제" value="국제" />
-          <Picker.Item label="종교" value="종교" />
-          <Picker.Item label="학술" value="학술" />
+          <Picker.Item label="학술/교양" value="학술/교양" />
+          <Picker.Item label="예술/문화/공연" value="예술/문화/공연" />
+          <Picker.Item label="자격증" value="자격증" />
+          <Picker.Item label="체육" value="체육" />
+          <Picker.Item label="취업" value="취업" />
+          <Picker.Item label="창업" value="창업" />
+          <Picker.Item label="봉사/사회" value="봉사/사회" />
+          <Picker.Item label="어학" value="어학" />
+          <Picker.Item label="친목" value="친목" />
+          <Picker.Item label="오락/게임" value="오락/게임" />
           <Picker.Item label="기타" value="기타" />
         </Picker>
       </View>

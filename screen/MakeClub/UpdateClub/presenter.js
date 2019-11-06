@@ -28,7 +28,7 @@ const UpdateClub = props => (
         <View style={{alignItems: 'center'}}>
           <UpdateButton
             title={'정보 수정'}
-            sub={'우리 동아리는요!'}
+            sub={'우리 모임은요!'}
             press={props.gotoSignUp}
           />
           <View style={styles.emptyPlace} />
@@ -45,7 +45,7 @@ const UpdateClub = props => (
           />
         </View>
       </View>
-      <Text style={styles.screenTitle}>동아리 수정</Text>
+      <Text style={styles.screenTitle}>모임 수정</Text>
     </View>
   </>
 );

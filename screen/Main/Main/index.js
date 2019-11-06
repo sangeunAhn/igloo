@@ -12,7 +12,6 @@ import ClubDiv from '../../../components/Main/ClubDiv';
 import HeaderScrollView from 'react-native-header-scroll-view';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {ifIphoneX} from 'react-native-iphone-x-helper';
-import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Entypo';
 import * as axios from 'axios';
 import {
@@ -37,22 +36,46 @@ export default class Main extends Component {
     super(props);
     this.state = {
       kindsOrder: [],
-      collapseArray: [true, true, true, true],
+      collapseArray: [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+      ],
+      existClub: '생성',
     };
   }
 
   UNSAFE_componentWillMount = () => {
     this._KindsOrder();
+    this._ExistClub();
   };
 
   _KindsOrder = () => {
-    var kinds = ['예술 공연', '예술 교양', '체육 구기', '체육 생활'];
+    var kinds = [
+      '학술/교양',
+      '예술/문화/공연',
+      '체육',
+      '취업',
+      '창업',
+      '기타',
+      '봉사/사회',
+      '어학',
+      '친목',
+      '오락/게임',
+    ];
     var kindsOrder = [];
-    let someArray = [1, 2, 3, 4];
+    let someArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     someArray.sort(function(a, b) {
       return 0.5 - Math.random();
     });
-    for (var i = 0; i < 4; i++) {
+    for (var i = 0; i < 10; i++) {
       kindsOrder.push(kinds[someArray[i] - 1]);
     }
     this.setState({kindsOrder});
@@ -88,9 +111,9 @@ export default class Main extends Component {
       .then(function(response) {
         var result = response.data.message;
         if (result === 'true') {
-          t._goToUpdateClub();
+          t.setState({existClub: '수정'});
         } else {
-          t._goToCreateClub();
+          t.setState({existClub: '생성'});
         }
       });
   };
@@ -112,37 +135,50 @@ export default class Main extends Component {
             <Ionicons name="ios-arrow-back" size={width * 0.08} color="black" />
           </SafeAreaView>
         </TouchableOpacity>
-        <Menu
-          style={{
-            position: 'absolute',
-            right: -3,
-            top: Platform.OS === 'ios' ? 35 : 15,
-            zIndex: 1,
-            // backgroundColor: 'red',
-          }}>
-          <MenuTrigger
+        {schoolName === userSchool ? (
+          <Menu
             style={{
-              padding: 13,
+              position: 'absolute',
+              right: -3,
+              top: Platform.OS === 'ios' ? 35 : 15,
+              zIndex: 1,
+              // backgroundColor: 'red',
             }}>
-            <SafeAreaView>
-              <Icon name="dots-three-horizontal" size={20} />
-            </SafeAreaView>
-          </MenuTrigger>
-          <MenuOptions
-            optionsContainerStyle={{
-              marginTop: 20,
-              borderRadius: 10,
-              width: 100,
-              height: 40,
-              justifyContent: 'center',
-            }}>
-            <MenuOption
-              value={1}
-              onSelect={this._ExistClub}
-              text="동아리 생성"
-            />
-          </MenuOptions>
-        </Menu>
+            <MenuTrigger
+              style={{
+                padding: 13,
+              }}>
+              <SafeAreaView>
+                <Icon name="dots-three-horizontal" size={20} />
+              </SafeAreaView>
+            </MenuTrigger>
+            <MenuOptions
+              optionsContainerStyle={{
+                marginTop: 20,
+                borderRadius: 10,
+                width: 100,
+                height: 40,
+                justifyContent: 'center',
+              }}>
+              {this.state.existClub === '생성' ? (
+                <MenuOption
+                  value={1}
+                  onSelect={this._goToCreateClub}
+                  text="모임 생성"
+                />
+              ) : (
+                <MenuOption
+                  value={1}
+                  onSelect={this._goToUpdateClub}
+                  text="모임 수정"
+                />
+              )}
+            </MenuOptions>
+          </Menu>
+        ) : (
+          <></>
+        )}
+
         <HeaderScrollView
           headerContainerStyle={styles.headerContainerStyle}
           headlineStyle={styles.headlineStyle}
@@ -150,7 +186,7 @@ export default class Main extends Component {
           titleStyle={styles.titleStyle}
           fadeDirection="up"
           scrollViewProps={{showsVerticalScrollIndicator: false}}
-          title="동아리 찾기">
+          title={schoolName}>
           {kindsOrder.map((kinds, i) => {
             return (
               <Collapse
@@ -168,16 +204,16 @@ export default class Main extends Component {
                       <Text style={styles.menuTitle}>{kinds}</Text>
                       {collapseArray[i] === true ? (
                         <Ionicons
-                          style={{alignSelf: 'flex-end', marginBottom: -5}}
+                          style={{alignSelf: 'flex-end', marginBottom: -2}}
                           name="ios-arrow-up"
-                          size={30}
+                          size={23}
                           color="#a7bfe8"
                         />
                       ) : (
                         <Ionicons
-                          style={{alignSelf: 'flex-end', marginBottom: -5}}
+                          style={{alignSelf: 'flex-end', marginBottom: -2}}
                           name="ios-arrow-down"
-                          size={30}
+                          size={23}
                           color="#a7bfe8"
                         />
                       )}

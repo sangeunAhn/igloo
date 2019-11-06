@@ -108,7 +108,7 @@ const MakeClub2 = props => (
               color: props.isFocused ? '#000000' : '#8d97a5',
             },
           ]}>
-          모임(동아리) 이름
+          모임 이름
         </Text>
         <TextInput
           onFocus={props.handleFocus}
@@ -131,7 +131,7 @@ const MakeClub2 = props => (
         />
       </View>
       <View style={styles.block}>
-        <Text style={styles.text}>모임(동아리) 종류</Text>
+        <Text style={styles.text}>모임 종류</Text>
         <View style={{width: height * 0.23}}>
           {props.navigation.getParam('from', 'NO-ID') == 'm' ? (
             <ClubPickerM
@@ -145,7 +145,7 @@ const MakeClub2 = props => (
       </View>
 
       <View style={styles.blank} />
-      <Text style={styles.text}>모임(동아리) 성격</Text>
+      <Text style={styles.text}>모임 성격</Text>
       <View style={styles.charView}>
         <Text style={styles.charLeftText}>소규모</Text>
         <Slider
@@ -213,7 +213,7 @@ const MakeClub2 = props => (
               color: props.isFocused1 ? '#000000' : '#8d97a5',
             },
           ]}>
-          동아리 소개
+          모임 소개
         </Text>
 
         <TextInput
@@ -247,7 +247,7 @@ const MakeClub2 = props => (
               color: props.isFocused2 ? '#000000' : '#8d97a5',
             },
           ]}>
-          연락 가능 연락처
+          연락처
         </Text>
         <TextInput
           onFocus={props.handleFocus2}

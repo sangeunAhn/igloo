@@ -60,7 +60,7 @@ const ClubRecord = props => (
             }}
             fadeDirection="up"
             scrollViewProps={{showsVerticalScrollIndicator: false}}
-            title="동아리 기록">
+            title="기록">
             {/* {props.isGetting ? (
           <MasonryList
             backgroundColor="#FAFAFA"

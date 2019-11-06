@@ -287,7 +287,7 @@ const ClubIntroduce = props => (
                   }}
                   fadeDirection="up"
                   scrollViewProps={{showsVerticalScrollIndicator: false}}
-                  title="동아리 기록">
+                  title="기록">
                   {props.imageRoom.length === 0 ? (
                     <>
                       <View style={styles.noImageView}>

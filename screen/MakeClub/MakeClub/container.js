@@ -426,7 +426,9 @@ class Container extends Component {
       },
     });
     if (this.props.navigation.getParam('from', 'NO-ID') === 'm') {
-      this.props.navigation.goBack();
+      this.props.navigation.navigate('Main', {
+        from: 'updateClub',
+      });
     } else {
       this.props.navigation.navigate('MakeChars', {
         userNo: getUserNo,

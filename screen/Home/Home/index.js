@@ -138,7 +138,7 @@ export default class example extends Component {
               onPress={() => this.props.navigation.navigate('Login')}>
               <Text style={{fontSize: height * 0.023, color: '#3B3B3B'}}>
                 {' '}
-                동아리 생성 / 수정{' '}
+                모임 생성 / 수정{' '}
               </Text>
             </TouchableOpacity>
             <LoginButton
