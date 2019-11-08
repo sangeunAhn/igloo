@@ -45,7 +45,7 @@ const ClubIntroduce = props => (
       isVisible={props.isImageViewVisible}
     /> */}
     {props.isGetting1 && props.isGetting2 ? (
-      <Swiper paginationStyle={{bottom: 10}} loop={false}>
+      <Swiper paginationStyle={{bottom: Platform.OS === 'ios' ? 15 : 10}} loop={false}>
         <View style={styles.container}>
           <TouchableOpacity
             style={styles.backBtn}
